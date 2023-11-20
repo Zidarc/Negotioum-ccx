@@ -21,20 +21,22 @@ app.listen(PORT, () => {
     console.log(`Listening on PORT: ${PORT}`);
 })
 
-app.get("/insert", (req, res) => {
-    var datas = new UserData();
-    datas.name = "Ali";
-    datas.num = "3";
-
-    datas.save()
-        .then(() => {
-            console.log("Data saved successfully.");
-            res.status(200).send("Data saved successfully.");
-        })
-        .catch((err) => {
-            console.error("Error saving data:", err);
-            res.status(500).send("Error saving data.");
+app.get('http://localhost:3000/insert', async (req, res) => {
+    try {
+        const datas = new UserData({
+            Team_name: 'Ali',
+            Team_password: 'someHashedPassword', // Make sure to use a secure hash
+            coins: [10, 5, 6, 8, 7, 4], // Assuming you want to initialize all coin values to 0
         });
+
+        await datas.save();
+
+        console.log('Data saved successfully.');
+        res.status(200).send('Data saved successfully.');
+    } catch (err) {
+        console.error('Error saving data:', err);
+        res.status(500).send('Error saving data.');
+    }
 });
 
 
