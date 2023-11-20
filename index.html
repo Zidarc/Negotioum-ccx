@@ -22,7 +22,7 @@
         document.getElementById("readButton").addEventListener("click", async function () {
             try {
                 // Replace 'Ali' with the team name you want to query
-                const teamName = 'Ali';
+                const teamName = 'MasterCoins';
                 const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
 
                 if (!response.ok) {
