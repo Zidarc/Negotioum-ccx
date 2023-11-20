@@ -6,7 +6,26 @@ exports.handler = async (event, context) => {
     try {
         mongoose.connect('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority');
 
-        const data = await UserData.find();
+        // Extract team name from the query parameters
+        const teamName = event.queryStringParameters && event.queryStringParameters.teamName;
+
+        if (!teamName) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: "Team name is missing in the request parameters" }),
+            };
+        }
+
+        // Find data for the specified team
+        const data = await UserData.findOne({ Team_name: teamName });
+
+        if (!data) {
+            return {
+                statusCode: 404,
+                body: JSON.stringify({ error: `Team '${teamName}' not found` }),
+            };
+        }
+
         return {
             statusCode: 200,
             body: JSON.stringify(data),
@@ -18,3 +37,4 @@ exports.handler = async (event, context) => {
         };
     }
 };
+

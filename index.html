@@ -26,24 +26,28 @@
                 });
         });
 
-        document.getElementById("readButton").addEventListener("click", function () {
-            fetch("/.netlify/functions/read")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {  
-                    document.getElementById("datadisplay").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+        document.getElementById("readButton").addEventListener("click", async function () {
+            try {
+                // Replace 'Ali' with the team name you want to query
+                const teamName = 'Ali';
+                const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById("status").innerText = `Error: ${data.error}`;
+                } else {
+                    document.getElementById("datadisplay").innerHTML = "<pre>" + data.coins[0] + "</pre>";
                     document.getElementById("status").innerText = "Data fetched successfully.";
-                })
-                .catch(error => {
-                    document.getElementById("status").innerText = "Error: " + error;
-                });
+                }
+            } catch (error) {
+                document.getElementById("status").innerText = "Error: " + error;
+            }
         });
-
         document.getElementById("updateButton").addEventListener("click", function() {
             fetch("/.netlify/functions/update")
                 .then(response => response.text())
