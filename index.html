@@ -16,7 +16,7 @@
 
     <script>
         document.getElementById("insertButton").addEventListener("click", function() {
-            fetch("/.netlify/functions/insert")
+            fetch("http://localhost:3000/insert")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("status").innerText = data;

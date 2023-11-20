@@ -21,7 +21,7 @@ app.listen(PORT, () => {
     console.log(`Listening on PORT: ${PORT}`);
 })
 
-app.get('http://localhost:3000/insert', async (req, res) => {
+app.get('/insert', async (req, res) => {
     try {
         const datas = new UserData({
             Team_name: 'Ali',
