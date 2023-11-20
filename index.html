@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Negotium</title>
+
+</head>
+<body>
+    <h1>Tests</h1>
+    
+    <button id="insertButton">Insert Data</button>
+    <button id="readButton">Read Data</button>
+    <button id="updateButton">Update Data</button>
+
+    <p>Status: <span id="status"></span></p>
+    <div id="datadisplay"></div>
+
+    <script>
+        document.getElementById("insertButton").addEventListener("click", function() {
+            fetch("http://localhost:3000/insert")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("status").innerText = data;
+                })
+                .catch(error => {
+                    document.getElementById("status").innerText = "Error: " + error;
+                });
+        });
+
+        document.getElementById("readButton").addEventListener("click", function () {
+            fetch("http://localhost:3000/read")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {  
+                    document.getElementById("datadisplay").innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+
+                    document.getElementById("status").innerText = "Data fetched successfully.";
+                })
+                .catch(error => {
+                    document.getElementById("status").innerText = "Error: " + error;
+                });
+        });
+
+        document.getElementById("updateButton").addEventListener("click", function() {
+            fetch("http://localhost:3000/update")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("status").innerText = data;
+                })
+                .catch(error => {
+                    document.getElementById("status").innerText = "Error: " + error;
+                });
+        });
+    </script>
+</body>
+</html>
