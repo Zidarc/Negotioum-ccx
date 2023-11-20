@@ -16,7 +16,7 @@
 
     <script>
         document.getElementById("insertButton").addEventListener("click", function() {
-            fetch("/insert")
+            fetch("http://localhost:3000/insert")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("status").innerText = data;
@@ -27,7 +27,7 @@
         });
 
         document.getElementById("readButton").addEventListener("click", function () {
-            fetch("/read")
+            fetch("http://localhost:3000/read")
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,7 +45,7 @@
         });
 
         document.getElementById("updateButton").addEventListener("click", function() {
-            fetch("/update")
+            fetch("http://localhost:3000/update")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("status").innerText = data;
