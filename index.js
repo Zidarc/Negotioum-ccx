@@ -38,16 +38,6 @@ app.get("/insert", (req, res) => {
 });
 
 
-app.get("/read", (req, res) => {
-    UserData.find()
-        .then((data) => {
-            return res.status(200).send(data);
-        })
-        .catch((err) => {
-            return res.status(500).send(err);
-        });
-});
-
 app.get("/update", (req, res) => {
     const id = "6542dd63fbfbebee3c44792d";
     const newName = "Hussain";

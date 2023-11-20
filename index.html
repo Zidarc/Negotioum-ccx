@@ -16,7 +16,7 @@
 
     <script>
         document.getElementById("insertButton").addEventListener("click", function() {
-            fetch("http://localhost:3000/insert")
+            fetch("/.netlify/functions/insert")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("status").innerText = data;
@@ -27,7 +27,7 @@
         });
 
         document.getElementById("readButton").addEventListener("click", function () {
-            fetch("http://localhost:3000/read")
+            fetch("/.netlify/functions/read")
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,7 +45,7 @@
         });
 
         document.getElementById("updateButton").addEventListener("click", function() {
-            fetch("http://localhost:3000/update")
+            fetch("/.netlify/functions/update")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("status").innerText = data;
