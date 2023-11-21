@@ -45,7 +45,7 @@ document.getElementById("readButton").addEventListener("click", async function (
             document.getElementById("DogecoinU").innerHTML = "<pre>" + data.coins[3] + "</pre>";
             document.getElementById("XRPU").innerHTML = "<pre>" + data.coins[4] + "</pre>";
             document.getElementById("BNBU").innerHTML = "<pre>" + data.coins[5] + "</pre>";
-            document.getElementById("FreeMoney") = "<pre>" + data.free_money + "</pre>";
+            document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
             document.getElementById("statusU").innerText = "Data fetched successfully.";
         }
     } catch (error) {
