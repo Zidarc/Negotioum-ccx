@@ -14,6 +14,11 @@ const usersdata = new mongoose.Schema({
         required: true,
         trim: true
     },
+    free_money: {
+        type:Number,
+        required: true,
+        trim: true
+    },
     coins: {
         type: [Number],
         required: true,
