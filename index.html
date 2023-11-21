@@ -46,7 +46,7 @@
 
                 if (Spassword === Upassword) {
                     // Redirect to index.js or another page on the server side
-                    location.href = 'https://scintillating-crostata-c432a0.netlify.app/user.html'; // Adjust the URL as needed
+                    window.location.href = 'https://scintillating-crostata-c432a0.netlify.app/user.html'; // Adjust the URL as needed
                 } else {
                     document.getElementById('errorbox').innerText = "Password Wrong";
                 }
