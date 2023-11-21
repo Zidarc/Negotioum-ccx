@@ -1,34 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Negotium</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
 </head>
 <body>
-    <h1>Tests</h1>
-    
-    <button id="readButton">Read Data</button>
-    <button id="updateButton">Update Data</button>
 
-    <p>Status: <span id="status"></span></p>
-    <span>Current Value</span>
-    <p>Bitcoin<span id="Bitcoin"></span></p>
-    <p>Polkadot:<span id="Polkadot"></span></p>
-    <p>Luna: <span id="Luna"></span></p>
-    <p>Dogecoin: <span id="Dogecoin"></span></p>
-    <p>XRP: <span id="XRP"></span></p>
-    <p>BNB: <span id="BNB"></span></p>
+    <h1>Sign In</h1>
+    <div id="errorbox"></div>
+    <form id="signInForm">
+        <label for="teamName">Team Name:</label>
+        <input type="text" id="teamName" name="teamName" required>
 
-    <p>Status: <span id="statusU"></span></p>
-    <span>In possesion</span>
-    <p>Bitcoin<span id="BitcoinU"></span></p>
-    <p>Polkadot:<span id="PolkadotU"></span></p>
-    <p>Luna: <span id="LunaU"></span></p>
-    <p>Dogecoin: <span id="DogecoinU"></span></p>
-    <p>XRP: <span id="XRPU"></span></p>
-    <p>BNB: <span id="BNBU"></span></p>
-    <p>Free money: <span id="FreeMoney"></span></p>
-    <p>TotalWorth: <span id="TotalWorth"></span></p>
-    <script src="./module.js"></script>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <br>
+
+        <button type="button" onclick="signIn()">Sign In</button>
+    </form>
+    <script>
+        async function signIn() {
+    const Uteamname = document.getElementById('teamName').value;
+    const Upassword = document.getElementById('password').value;
+
+    if (!Uteamname || !Upassword) {
+        document.getElementById('errorbox').innerText = "Please enter the values in.";
+    } else {
+        try {
+            const response = await fetch(`/.netlify/functions/read?teamName=${Uteamname}`);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.error) {
+                document.getElementById("status").innerText = `Error: ${data.error}`;
+            } else {
+                const Spassword = data.Team_password;
+
+                if (Spassword === Upassword) {
+                    // Redirect to index.js or another page on the server side
+                    window.location.href = '/index.html'; // Adjust the URL as needed
+                } else {
+                    document.getElementById('errorbox').innerText = "Password Wrong";
+                }
+            }
+        } catch (error) {
+            document.getElementById('errorbox').innerText = "An error occurred during sign-in.";
+        }
+    }
+}
+
+    </script>
+    <script src="./login.js"></script>
 </body>
 </html>
