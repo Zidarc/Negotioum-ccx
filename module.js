@@ -46,6 +46,7 @@ document.getElementById("readButton").addEventListener("click", async function (
             document.getElementById("XRPU").innerHTML = "<pre>" + data.coins[4] + "</pre>";
             document.getElementById("BNBU").innerHTML = "<pre>" + data.coins[5] + "</pre>";
             document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
+            document.getElementById("TotalWorth").innerHTML = "<pre>" + data.total_worth + "</pre>";
             document.getElementById("statusU").innerText = "Data fetched successfully.";
         }
     } catch (error) {
