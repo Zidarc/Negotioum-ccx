@@ -1,4 +1,9 @@
-document.getElementById("readButton").addEventListener("click", async function () {
+import { getUserData } from './userData';
+
+// Example usage
+const userData = getUserData();
+console.log(userData.UteamName, userData.Upassword);
+document.addEventListener("DOMContentLoaded", async function () { 
     try {
         const teamName = 'MasterCoins';
         const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
@@ -26,9 +31,7 @@ document.getElementById("readButton").addEventListener("click", async function (
 });
 document.getElementById("readButton").addEventListener("click", async function () {
     try {
-        // Replace 'Ali' with the team name you want to query
-        const teamName = 'Ali';
-        const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
+        const response = await fetch(`/.netlify/functions/read?teamName=${userData.UteamName}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

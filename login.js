@@ -1,3 +1,4 @@
+import { setUserData } from './userData';
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
@@ -6,6 +7,7 @@ async function signIn() {
         document.getElementById('errorbox').innerText = "Please enter the values in.";
     } else {
         try {
+            setUserData(Uteamname, Upassword);
             const response = await fetch(`/.netlify/functions/read?teamName=${Uteamname}`);
 
             if (!response.ok) {
