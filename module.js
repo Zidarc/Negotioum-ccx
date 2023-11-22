@@ -1,4 +1,4 @@
-import { getUserData } from './userData';
+import { getUserData } from './teamdata.js';
 
 // Example usage
 const userData = getUserData();
