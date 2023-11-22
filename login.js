@@ -33,3 +33,5 @@ async function signIn() {
         }
     }
 }
+
+window.signIn = signIn;
