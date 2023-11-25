@@ -2,7 +2,11 @@ import { setUserData } from './teamdata.js';
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
-
+    const globalVariable = {
+        x: Uteamname,
+        y: Upassword
+      };
+      module.exports = globalVariable;
     if (!Uteamname || !Upassword) {
         document.getElementById('errorbox').innerText = "Please enter the values in.";
     } else {
