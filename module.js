@@ -1,6 +1,6 @@
 // Example usage
-const userData = getUserData();
-console.log(userData.UteamName, userData.Upassword);
+const globalVariable = require('./login.js');
+
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
         const teamName = 'MasterCoins';
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const globalVariable = require('./login.js');
+
         const response = await fetch(`/.netlify/functions/read?teamName=${globalVariable.x}`);
 
         if (!response.ok) {
