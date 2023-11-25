@@ -1,5 +1,5 @@
 // Example usage
-const globalVariable = require('./login.js');
+import globalVariable from './login.js';
 
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-
+        const storedData = localStorage.getItem('globalVariable');
+        const globalVariable = storedData ? JSON.parse(storedData) : { x: '', y: '' };
         const response = await fetch(`/.netlify/functions/read?teamName=${globalVariable.x}`);
 
         if (!response.ok) {
@@ -73,11 +74,7 @@ document.getElementById("updateButton").addEventListener("click", function() {
     let COIN4 = document.getElementById("DogecoinN").value
     let COIN5 = document.getElementById("XRPN").value
     let COIN6 = document.getElementById("BNBN").value
-    let Newval = [COIN1, COIN2, COIN3, COIN4, COIN5, COIN6];
-    const updatevalues = {
-        newvalues: Newval
-      };
-      module.exports = updatevalues;
+    localStorage.setItem('updatevalues', JSON.stringify({ newvalues: [COIN1, COIN2,COIN3, COIN4, COIN5, COIN6]}));
     fetch("/.netlify/functions/update")
         .then(response => response.text())
         .then(data => {
