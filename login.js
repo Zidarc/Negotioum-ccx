@@ -11,7 +11,7 @@ async function signIn() {
     const Upassword = document.getElementById('password').value;
     asyncTeamName = Uteamname;
     asyncPassword = Upassword;
-    asyncTeamNamePromise = promise.resolve(Uteamname);
+    asyncTeamNamePromise = Promise.resolve(Uteamname);
     if (!Uteamname || !Upassword) {
         document.getElementById('errorbox').innerText = "Please enter the values in.";
     } else {
