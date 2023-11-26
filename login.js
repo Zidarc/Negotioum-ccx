@@ -41,10 +41,5 @@ async function signIn() {
         }
     }
 }
-export function getUserTeamName(){
-    return asyncTeamName;
-}
-export function getUserPassword(){
-    return asyncPassword;
-}
+
 window.signIn = signIn;
