@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         const teamId = getTeamId();
-        const response = fetch(`/.netlify/functions/read?teamName=${teamId}`);
+        const response = await fetch(`/.netlify/functions/read?teamName=${teamId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.statusU}`);
