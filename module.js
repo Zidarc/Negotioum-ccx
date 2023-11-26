@@ -1,5 +1,5 @@
 // Example usage
-import { getTN, getPS } from "./teamdata";
+import { getTN, getPS } from "./teamdata.js";
 let username = getTN();
 let userpass = getPS();
 
@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const UserTeamName = await getUserTeamName()
         const response = await fetch(`/.netlify/functions/read?teamName=${username}`);
 
         if (!response.ok) {
