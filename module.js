@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const response = await fetch(`/.netlify/functions/read?teamName=${username}`);
+        const response = fetch(`/.netlify/functions/read?teamName=${username}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
