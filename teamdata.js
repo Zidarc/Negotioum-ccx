@@ -1,18 +1,12 @@
-let UteamName = '';
-let Upassword = '';
-let NewCoin = [];
-
-export function setUserData(teamName, password) {
-    UteamName = teamName;
-    Upassword = password;
+let teamname;
+let teampass;
+export function setData(TN, PS){
+    teamname = TN;
+    teampass = PS;
 }
-
-export function getUserData() {
-    return { UteamName, Upassword };
+export function getTN(){
+    return teamname
 }
-export function SetCoinVal(Coin1){
-    NewCoin= Coin1;
-}
-export function GetCoinVal() {
-    return {NewCoin};
+export function getPS(){
+    return teampass
 }
