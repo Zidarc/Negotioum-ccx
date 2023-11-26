@@ -1,11 +1,10 @@
+let asyncTeamName;
+let asyncPassword
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
-    const globalVariable = {
-        x: Uteamname,
-        y: Upassword
-      };
-      module.exports = globalVariable;
+    asyncTeamName = Uteamname;
+    asyncPassword = Upassword;
     if (!Uteamname || !Upassword) {
         document.getElementById('errorbox').innerText = "Please enter the values in.";
     } else {
@@ -35,5 +34,6 @@ async function signIn() {
         }
     }
 }
-
+export const UserTeamName = asyncTeamName;
+export const UserPassword = asyncPassword;
 window.signIn = signIn;
