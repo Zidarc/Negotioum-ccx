@@ -1,6 +1,6 @@
 // Example usage
-import { UserTeamName } from "./login";
-import { UserPassword } from "./login";
+import { UserTeamName } from "./login.js";
+import { UserPassword } from "./login.js";
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
         const teamName = 'MasterCoins';
