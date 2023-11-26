@@ -1,5 +1,5 @@
 // Example usage
-import { getUserPassword, getUserTeamName } from "./login.js";
+import { getUserTeamName } from "./login.js";
 
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
