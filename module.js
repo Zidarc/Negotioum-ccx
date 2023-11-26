@@ -1,8 +1,7 @@
 // Example usage
-
-
+import { UserTeamName } from "./login";
+import { UserPassword } from "./login";
 document.addEventListener("DOMContentLoaded", async function () { 
-    const globalVariable = require('./login.js');
     try {
         const teamName = 'MasterCoins';
         const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 document.addEventListener("DOMContentLoaded", async function () {
     try {
 
-        const response = await fetch(`/.netlify/functions/read?teamName=${globalVariable.x}`);
+        const response = await fetch(`/.netlify/functions/read?teamName=${UserTeamName}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
