@@ -1,12 +1,11 @@
-let asyncTeamName;
-let asyncPassword;
-import {setData} from './teamdata.js'
+import { setTeamId } from "./teamdata.js";
+function setTeamIdAfterLogin(id) {
+    setTeamId(id);
+}
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
-    asyncTeamName = Uteamname;
-    asyncPassword = Upassword;
-    setData(asyncTeamName,asyncPassword)
+    setTeamIdAfterLogin(Uteamname);
     if (!Uteamname || !Upassword) {
         document.getElementById('errorbox').innerText = "Please enter the values in.";
     } else {

@@ -1,6 +1,4 @@
-// Example usage
-import { getTN, getPS } from "./teamdata.js";
-let userpass = getPS();
+import { getTeamId } from "./teamdata.js";
 
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
@@ -30,17 +28,17 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        let username = getTN();
-        const response = fetch(`/.netlify/functions/read?teamName=${username}`);
+        const teamId = getTeamId();
+        const response = fetch(`/.netlify/functions/read?teamName=${teamId}`);
 
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.statusU}`);
         }
 
         const data = await response.json();
 
         if (data.error) {
-            document.getElementById("status").innerText = `Error: ${data.error}`;
+            document.getElementById("statusU").innerText = `Error: ${data.error}`;
         } else {
             document.getElementById("BitcoinU").innerHTML = "<pre>" + data.coins[0] + "</pre>";
             document.getElementById("PolkadotU").innerHTML = "<pre>" + data.coins[1] + "</pre>";
@@ -64,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("statusN").innerText = "Data fetched successfully.";
         }
     } catch (error) {
-        document.getElementById("status").innerText = "Error: " + error;
+        document.getElementById("statusU").innerText = "Error: " + error;
     }
 });
 document.getElementById("updateButton").addEventListener("click", function() {
@@ -82,9 +80,9 @@ document.getElementById("updateButton").addEventListener("click", function() {
     fetch("/.netlify/functions/update")
         .then(response => response.text())
         .then(data => {
-            document.getElementById("status").innerText = data;
+            document.getElementById("statusN").innerText = data;
         })
         .catch(error => {
-            document.getElementById("status").innerText = "Error: " + error;
+            document.getElementById("statusN").innerText = "Error: " + error;
         });
 });
