@@ -1,6 +1,6 @@
 // Example usage
-import { UserTeamName } from "./login.js";
-import { UserPassword } from "./login.js";
+import { getUserPassword, getUserTeamName } from "./login.js";
+
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
         const teamName = 'MasterCoins';
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-
+        const UserTeamName = getUserTeamName()
         const response = await fetch(`/.netlify/functions/read?teamName=${UserTeamName}`);
 
         if (!response.ok) {
