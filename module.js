@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const UserTeamName = getUserTeamName()
+        const UserTeamName = await getUserTeamName()
         const response = await fetch(`/.netlify/functions/read?teamName=${UserTeamName}`);
 
         if (!response.ok) {

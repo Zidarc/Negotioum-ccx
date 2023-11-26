@@ -1,10 +1,17 @@
 let asyncTeamName;
 let asyncPassword;
+let asyncTeamNamePromise = new Promise(resolve => {
+    resolve();
+});
+export function getUserTeamName() {
+    return asyncTeamNamePromise;
+}
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
     asyncTeamName = Uteamname;
     asyncPassword = Upassword;
+    asyncTeamNamePromise = promise.resolve(Uteamname);
     if (!Uteamname || !Upassword) {
         document.getElementById('errorbox').innerText = "Please enter the values in.";
     } else {
