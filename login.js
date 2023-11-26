@@ -1,5 +1,5 @@
 let asyncTeamName;
-let asyncPassword
+let asyncPassword;
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
