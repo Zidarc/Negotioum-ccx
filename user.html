@@ -28,8 +28,7 @@
     <p>TotalWorth: <span id="TotalWorth"></span></p>
 
     <p>Status: <span id="statusN"></span></p>
-    <span>New values</span>
-    <p>Update<input type="number" id="BitcoinN" name="BitcoinN" min="0"></p>
+    <p>Update<input type="number" id="update" name="update" min="0"></p>
     <label for="CoinType">Select Transaction Type:</label>
     <select id="CoinType">
         <option value="bitcoin">Bitcoin</option>
@@ -45,7 +44,7 @@
         <option value="sell">Sell</option>
     </select>
 
-    <button onclick="readSelectedValue()">Submit</button>
+    <button id = "readSelectedValue">Submit</button>
 
     <p>Free money: <span id="FreeMoneyN"></span></p>
     <p>TotalWorth: <span id="TotalWorthN"></span></p>
