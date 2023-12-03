@@ -3,4 +3,4 @@ export function setTeamId(id) {
 }
 export function getTeamId() {
     return sessionStorage.getItem('teamdata');
-}
+} 

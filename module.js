@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("BNB").innerHTML = "<pre>" + data.coins[5] + "</pre>";
             document.getElementById("status").innerText = "Data fetched successfully.";
         }
+        await readdata();
     } catch (error) {
         document.getElementById("status").innerText = "Error: " + error;
     }
