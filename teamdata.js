@@ -1,6 +1,6 @@
 export function setTeamId(id) {
-    sessionStorage.setItem('teamdata',id);
+    localStorage.setItem('teamdata',id);
 }
 export function getTeamId() {
-    return sessionStorage.getItem('teamdata');
+    return localStorage.getItem('teamdata');
 } 
