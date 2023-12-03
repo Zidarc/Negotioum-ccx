@@ -1,5 +1,6 @@
 import { getTeamId } from "./teamdata.js";
 
+
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
         const teamName = 'MasterCoins';
@@ -26,7 +27,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("status").innerText = "Error: " + error;
     }
 });
-document.addEventListener("DOMContentLoaded", async function () {
+
+async function readdata() {
     try {
         const teamId = getTeamId();
         const response = await fetch(`/.netlify/functions/read?teamName=${teamId}`);
@@ -49,40 +51,21 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
             document.getElementById("TotalWorth").innerHTML = "<pre>" + data.total_worth + "</pre>";
             document.getElementById("statusU").innerText = "Data fetched successfully.";
-
-
-            document.getElementById("BitcoinN").value = data.coins[0];
-            document.getElementById("PolkadotN").value = data.coins[1];
-            document.getElementById("LunaN").value = data.coins[2];
-            document.getElementById("DogecoinN").value = data.coins[3];
-            document.getElementById("XRPN").value = data.coins[4];
-            document.getElementById("BNBN").value = data.coins[5];
-            document.getElementById("FreeMoneyN").innerHTML = "<pre>" + data.free_money + "</pre>";
-            document.getElementById("TotalWorthN").innerHTML = "<pre>" + data.total_worth + "</pre>";
-            document.getElementById("statusN").innerText = "Data fetched successfully.";
         }
     } catch (error) {
         document.getElementById("statusU").innerText = "Error: " + error;
     }
-});
-document.getElementById("updateButton").addEventListener("click", function() {
-    let COIN1 = document.getElementById("BitcoinN").value
-    let COIN2 = document.getElementById("PolkadotN").value
-    let COIN3 = document.getElementById("LunaN").value
-    let COIN4 = document.getElementById("DogecoinN").value
-    let COIN5 = document.getElementById("XRPN").value
-    let COIN6 = document.getElementById("BNBN").value
-    let Newval = [COIN1, COIN2, COIN3, COIN4, COIN5, COIN6];
-    const updatevalues = {
-        newvalues: Newval
-      };
-      module.exports = updatevalues;
-    fetch("/.netlify/functions/update")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("statusN").innerText = data;
-        })
-        .catch(error => {
-            document.getElementById("statusN").innerText = "Error: " + error;
-        });
+}
+
+document.getElementById("readSelectedValue").addEventListener("click", async function() {
+    try{
+        let cointype = document.getElementById("CoinType").value;
+        let transactiontype =  document.getElementById("transactionType").value;
+        let coinval = document.getElementById("update").value;
+        const teamId = getTeamId();
+        const response = await fetch(`/.netlify/functions/update?cointype=${cointype}&teamName=${teamId}&transactiontype=${transactiontype}&coinval=${coinval}`);
+        await readdata();
+    } catch (error) {
+        document.getElementById("statusN").innerText = " Error: " + error;
+    }
 });
