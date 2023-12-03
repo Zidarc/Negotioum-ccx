@@ -12,7 +12,8 @@ const usersdata = new mongoose.Schema({
     Team_password: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true
     },
     free_money: {
         type:Number,
