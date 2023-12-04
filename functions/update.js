@@ -101,7 +101,7 @@ exports.handler = async (event, context) => {
         } else if (type === 2) {
             if (coinVal <= userCoinVal) {
                 const updatedData = await UserData.findOneAndUpdate(
-                    { _id: teamName },
+                    { Team_name: teamName },
                     {
                         $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coinVal)) },
                         $inc: { free_money: parseFloat(coinVal) * serverCoinVal },
