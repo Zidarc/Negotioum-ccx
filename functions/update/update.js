@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const UserData = require("../models/userdata");
+const UserData = require("../../models/userdata");
 
 exports.handler = async (event, context) => {
     try {
