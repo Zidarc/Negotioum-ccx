@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
         const coinType = event.queryStringParameters && event.queryStringParameters.cointype;
         const transactionType = event.queryStringParameters && event.queryStringParameters.transactiontype;
         const coinVal = event.queryStringParameters && event.queryStringParameters.coinval;
-        const teamName = event.queryStringParameters && event.queryStringParameters.teamName;
+        const teamname = event.queryStringParameters && event.queryStringParameters.teamname;
         let index;
         let type;
 
@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
             };
         }
 
-        if (!teamName) {
+        if (!teamname) {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: "Team name is missing in the request parameters" }),
@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
         }
 
         // Fetch user data
-        const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
+        const response = await fetch(`/.netlify/functions/read?teamName=${teamname}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -79,7 +79,7 @@ exports.handler = async (event, context) => {
             if (coinVal <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
                 const updatedData = await UserData.findOneAndUpdate(
-                    { _id: teamName },
+                    { _id: teamname },
                     {
                         $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal)) },
                         $inc: { free_money: -(parseFloat(coinVal) * serverCoinVal) },
