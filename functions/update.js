@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const UserData = require("../../models/userdata");
+const UserData = require("../models/userdata");
 
 exports.handler = async (event, context) => {
     try {
@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
         }
 
         // Fetch user data
-        const response = await fetch(`/functions/read?teamName=${teamId}`);
+        const response = await fetch(`/read?teamName=${teamId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -61,7 +61,7 @@ exports.handler = async (event, context) => {
         let userCoinVal = data.coins[index];
 
         // Fetch server data (assuming this should be "MasterCoins")
-        const masterResponse = await fetch(`/functions/read?teamName=MasterCoins`);
+        const masterResponse = await fetch(`/read?teamName=MasterCoins`);
 
         if (!masterResponse.ok) {
             throw new Error(`HTTP error! Status: ${masterResponse.status}`);
