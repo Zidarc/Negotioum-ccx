@@ -79,12 +79,11 @@ exports.handler = async (event, context) => {
             if (coinVal <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
                 const updatedData = await UserData.findOneAndUpdate(
-                    { _id: teamId },
+                    { Team_name: teamId },
                     {
                         $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal)) },
                         $inc: { free_money: -(parseFloat(coinVal) * serverCoinVal) },
                     },
-                    { new: true } // Return the modified document rather than the original
                 );
 
                 if (!updatedData) {
