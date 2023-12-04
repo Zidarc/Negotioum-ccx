@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
         }
 
         // Fetch user data
-        const response = await fetch(`/read?teamName=${teamId}`);
+        const response = await fetch(` https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=${teamId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -61,7 +61,7 @@ exports.handler = async (event, context) => {
         let userCoinVal = data.coins[index];
 
         // Fetch server data (assuming this should be "MasterCoins")
-        const masterResponse = await fetch(`/read?teamName=MasterCoins`);
+        const masterResponse = await fetch(` https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=MasterCoins`);
 
         if (!masterResponse.ok) {
             throw new Error(`HTTP error! Status: ${masterResponse.status}`);
