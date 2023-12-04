@@ -59,12 +59,12 @@ async function readdata() {
 }
 
 document.getElementById("readSelectedValue").addEventListener("click", async function() {
-    try{
+    try {
         let cointype = document.getElementById("CoinType").value;
-        let transactiontype =  document.getElementById("transactionType").value;
+        let transactiontype = document.getElementById("transactionType").value;
         let coinval = document.getElementById("update").value;
         const teamId = getTeamId();
-        const response = await fetch(`/.netlify/functions/update?cointype=${cointype}&teamname=${teamId}&transactiontype=${transactiontype}&coinval=${coinval}`);
+        const response = await fetch(`/.netlify/functions/update?cointype=${cointype}&teamId=${teamId}&transactiontype=${transactiontype}&coinval=${coinval}`);
         await readdata();
     } catch (error) {
         document.getElementById("statusN").innerText = " Error: " + error;
