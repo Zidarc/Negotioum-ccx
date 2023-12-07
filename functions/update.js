@@ -105,7 +105,7 @@ exports.handler = async (event, context) => {
                     const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal).toFixed(3)), 
+                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal)), 
                                 total_worth: await calculateTotal()
                     },
                         $inc: { free_money: -(parseFloat(coinVal).toFixed(3) * serverCoinVal) },
