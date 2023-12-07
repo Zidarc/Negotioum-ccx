@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
             "bnb": 5,
         };
 
-        let index = coinTypeToIndex[coinType];
+        const index = coinTypeToIndex[coinType];
 
         if (index === undefined) {
             console.error("Invalid coinType:", coinType);
@@ -50,9 +50,9 @@ exports.handler = async (event, context) => {
         }
 
         const data = await response.json();
-        let userCoins = data.coins;
-        let freeCoins = data.free_money;
-        let userCoinVal = userCoins[index];
+        const userCoins = data.coins;
+        const freeCoins = data.free_money;
+        const userCoinVal = userCoins[index];
 
         // Fetch server data (assuming this should be "MasterCoins")
         const masterResponse = await fetch(`https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=MasterCoins`);
@@ -62,16 +62,16 @@ exports.handler = async (event, context) => {
         }
 
         const serverData = await masterResponse.json();
-        let masterCoin = serverData.coins;
-        let serverCoinVal = masterCoin[index];
-        let sum = 0;
+        const masterCoin = serverData.coins;
+        const serverCoinVal = masterCoin[index];
+
         // Calculate total function
         async function calculateTotal() {
             // Calculate the sum of products of corresponding elements
             if (masterCoin.length === userCoins.length) {
-                sum = masterCoin.reduce((acc, masterCoinVal, idx) => acc + masterCoinVal * userCoins[idx], 0);
+                const sum = masterCoin.reduce((acc, masterCoinVal, idx) => acc + masterCoinVal * userCoins[idx], 0);
                 // Calculate total by adding sum and freeCoins
-                let total = sum + freeCoins;
+                const total = sum + freeCoins;
                 return total;
             } else {
                 console.error("Arrays must have the same length for element-wise multiplication.");
@@ -80,6 +80,7 @@ exports.handler = async (event, context) => {
         }
 
         // Update in case of buying or selling
+        const type = transactionType === "buy" ? 1 : 2; // Set type based on transaction type
         const updatedData = await UserData.findOneAndUpdate(
             { Team_name: teamId },
             {
