@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const UserData = require("../models/userdata");
+const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
     try {
@@ -13,28 +14,20 @@ exports.handler = async (event, context) => {
         const transactionType = event.queryStringParameters && event.queryStringParameters.transactiontype;
         const coinVal = event.queryStringParameters && event.queryStringParameters.coinval;
         const teamId = event.queryStringParameters && event.queryStringParameters.teamId;
-        let index;
-        let type;
 
-        if (transactionType === "buy") {
-            type = 1;
-        } else {
-            type = 2;
-        }
+        // Map coin types to indices
+        const coinTypeToIndex = {
+            "bitcoin": 0,
+            "polkadot": 1,
+            "luna": 2,
+            "dogecoin": 3,
+            "xrp": 4,
+            "bnb": 5,
+        };
 
-        if (coinType === "bitcoin") {
-            index = 0;
-        } else if (coinType === "polkadot") {
-            index = 1;
-        } else if (coinType === "luna") {
-            index = 2;
-        } else if (coinType === "dogecoin") {
-            index = 3;
-        } else if (coinType === "xrp") {
-            index = 4;
-        } else if (coinType === "bnb") {
-            index = 5;
-        } else {
+        let index = coinTypeToIndex[coinType];
+
+        if (index === undefined) {
             console.error("Invalid coinType:", coinType);
             return {
                 statusCode: 400,
@@ -50,7 +43,7 @@ exports.handler = async (event, context) => {
         }
 
         // Fetch user data
-        const response = await fetch(` https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=${teamId}`);
+        const response = await fetch(`https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=${teamId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -59,11 +52,10 @@ exports.handler = async (event, context) => {
         const data = await response.json();
         let userCoins = data.coins;
         let freeCoins = data.free_money;
-        let userCoinVal = data.coins[index];
-        
+        let userCoinVal = userCoins[index];
 
         // Fetch server data (assuming this should be "MasterCoins")
-        const masterResponse = await fetch(` https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=MasterCoins`);
+        const masterResponse = await fetch(`https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=MasterCoins`);
 
         if (!masterResponse.ok) {
             throw new Error(`HTTP error! Status: ${masterResponse.status}`);
@@ -71,95 +63,49 @@ exports.handler = async (event, context) => {
 
         const serverData = await masterResponse.json();
         let masterCoin = serverData.coins;
-        let serverCoinVal = serverData.coins[index];
+        let serverCoinVal = masterCoin[index];
 
         // Calculate total function
         async function calculateTotal() {
-            // Your total calculation logic goes here
-            // masterCoin array
-            //userCoins array
-            // how to add free coin in it, what to do now?
-            // I can calculate free coin through two if statement if buy then user previous free coin - new calculated expense
-            // if sell then previous free coin + new money etc
-            if (type === 1) {
-                freeCoins = freeCoins - parseFloat(coinVal).toFixed(3) * serverCoinVal
-            } else {
-                freeCoins = freeCoins + parseFloat(coinVal).toFixed(3) * serverCoinVal
-            }
+            // Calculate the sum of products of corresponding elements
             if (masterCoin.length === userCoins.length) {
-                const sum = masterCoin.reduce((acc, masterCoinVal, index) => acc + masterCoinVal * userCoins[index], 0);
-              
-                console.log("Sum of the product:", sum);
-              } else {
+                const sum = masterCoin.reduce((acc, masterCoinVal, idx) => acc + masterCoinVal * userCoins[idx], 0);
+                // Calculate total by adding sum and freeCoins
+                let total = sum + freeCoins;
+                return total;
+            } else {
                 console.error("Arrays must have the same length for element-wise multiplication.");
-              }
-            let total = sum + freeCoins;
-            return total;
-        }
-
-        if (type === 1) {
-            if (coinVal <= (freeCoins / serverCoinVal)) {
-                // Update in case of buying
-                userCoins[index] = userCoinVal + parseFloat(coinVal).toFixed(3);
-                    const updatedData = await UserData.findOneAndUpdate(
-                    { Team_name: teamId },
-                    {
-                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal).toFixed(3)), 
-                                total_worth: await calculateTotal()
-                    },
-                        $inc: { free_money: -(parseFloat(coinVal).toFixed(3) * serverCoinVal) },
-                    },
-
-                );
-
-                if (!updatedData) {
-                    return {
-                        statusCode: 404,
-                        body: JSON.stringify({ error: "Document not found." }),
-                    };
-                }
-
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify({ message: "Document updated successfully.", data: updatedData }),
-                };
-            }
-        } else if (type === 2) {
-            if (coinVal <= userCoinVal) {
-                userCoins[index] = userCoinVal - parseFloat(coinVal).toFixed(3);
-                const updatedData = await UserData.findOneAndUpdate(
-                    { Team_name: teamId },
-                    {
-                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coinVal).toFixed(3)), 
-                                total_worth: await calculateTotal()
-                    },
-                        $inc: { free_money: parseFloat(coinVal).toFixed(3) * serverCoinVal },
-                    },
-                    { new: true } // Return the modified document rather than the original
-                );
-
-                if (!updatedData) {
-                    return {
-                        statusCode: 404,
-                        body: JSON.stringify({ error: "Document not found." }),
-                    };
-                }
-
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify({ message: "Document updated successfully.", data: updatedData }),
-                };
+                return null;
             }
         }
-        
 
+        // Update in case of buying or selling
+        const updatedData = await UserData.findOneAndUpdate(
+            { Team_name: teamId },
+            {
+                $set: {
+                    [`coins.${index}`]: type === 1 ? (userCoinVal + parseFloat(coinVal).toFixed(3)) : (userCoinVal - parseFloat(coinVal).toFixed(3)),
+                    total_worth: await calculateTotal()
+                },
+                $inc: {
+                    free_money: type === 1 ? -(parseFloat(coinVal).toFixed(3) * serverCoinVal) : parseFloat(coinVal).toFixed(3) * serverCoinVal,
+                },
+            },
+            { new: true }
+        );
 
-
+        if (!updatedData) {
+            return {
+                statusCode: 404,
+                body: JSON.stringify({ error: "Document not found." }),
+            };
+        }
 
         return {
-            statusCode: 400,
-            body: JSON.stringify({ error: "Invalid transactionType or coinVal" }),
+            statusCode: 200,
+            body: JSON.stringify({ message: "Document updated successfully.", data: updatedData }),
         };
+
     } catch (error) {
         console.error("Error in the function:", error);
         return {
