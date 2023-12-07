@@ -57,8 +57,10 @@ exports.handler = async (event, context) => {
         }
 
         const data = await response.json();
+        let userCoins = data.coins;
         let freeCoins = data.free_money;
         let userCoinVal = data.coins[index];
+        
 
         // Fetch server data (assuming this should be "MasterCoins")
         const masterResponse = await fetch(` https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=MasterCoins`);
@@ -68,22 +70,46 @@ exports.handler = async (event, context) => {
         }
 
         const serverData = await masterResponse.json();
+        let masterCoin = serverData.coins;
         let serverCoinVal = serverData.coins[index];
 
         // Calculate total function
         async function calculateTotal() {
             // Your total calculation logic goes here
+            // masterCoin array
+            //userCoins array
+            // how to add free coin in it, what to do now?
+            // I can calculate free coin through two if statement if buy then user previous free coin - new calculated expense
+            // if sell then previous free coin + new money etc
+            if (type === 1) {
+                freeCoins = freeCoins - parseFloat(coinVal).toFixed(3) * serverCoinVal
+            } else {
+                freeCoins = freeCoins + parseFloat(coinVal).toFixed(3) * serverCoinVal
+            }
+            if (masterCoins.length === userCoins.length) {
+                const sum = masterCoins.reduce((acc, masterCoin, index) => acc + masterCoin * userCoins[index], 0);
+              
+                console.log("Sum of the product:", sum);
+              } else {
+                console.error("Arrays must have the same length for element-wise multiplication.");
+              }
+            let total = sum + freeCoins;
+            return total;
         }
 
         if (type === 1) {
             if (coinVal <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
-                const updatedData = await UserData.findOneAndUpdate(
+                userCoins[index] = userCoinVal + parseFloat(coinVal).toFixed(3);
+                    const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal)) },
-                        $inc: { free_money: -(parseFloat(coinVal) * serverCoinVal) },
+                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal).toFixed(3)), 
+                                total_worth: await calculateTotal()
                     },
+                        $inc: { free_money: -(parseFloat(coinVal).toFixed(3) * serverCoinVal) },
+                    },
+
                 );
 
                 if (!updatedData) {
@@ -100,11 +126,14 @@ exports.handler = async (event, context) => {
             }
         } else if (type === 2) {
             if (coinVal <= userCoinVal) {
+                userCoins[index] = userCoinVal - parseFloat(coinVal).toFixed(3);
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coinVal)) },
-                        $inc: { free_money: parseFloat(coinVal) * serverCoinVal },
+                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coinVal).toFixed(3)), 
+                                total_worth: await calculateTotal()
+                    },
+                        $inc: { free_money: parseFloat(coinVal).toFixed(3) * serverCoinVal },
                     },
                     { new: true } // Return the modified document rather than the original
                 );
@@ -122,6 +151,10 @@ exports.handler = async (event, context) => {
                 };
             }
         }
+        
+
+
+
 
         return {
             statusCode: 400,
