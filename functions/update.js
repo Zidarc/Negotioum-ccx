@@ -84,6 +84,7 @@ exports.handler = async (event, context) => {
                 console.error("Error in calculateTotal:", error.message);
                 throw error; // Re-throw the error to handle it in the calling code
             }
+        }
 
         // Update in case of buying or selling
         const type = transactionType === "buy" ? 1 : 2; // Set type based on transaction type
