@@ -68,21 +68,16 @@ exports.handler = async (event, context) => {
         // Calculate total function
 
         async function calculateTotal() {
-            try {
-                let sum = 0;
-                // Calculate the sum of products of corresponding elements
-                if (masterCoin.length === userCoins.length) {
-                    sum = masterCoin.reduce((acc, masterCoinVal, idx) => acc + masterCoinVal * userCoins[idx], 0);
-                    // Calculate total by adding sum and freeCoins
-                    const total = sum + freeCoins;
-                    return total;
-                } else {
-                    console.error("Arrays must have the same length for element-wise multiplication.");
-                    return null;
-                }
-            } catch (error) {
-                console.error("Error in calculateTotal:", error.message);
-                throw error; // Re-throw the error to handle it in the calling code
+            let sum = 0;
+            // Calculate the sum of products of corresponding elements
+            if (masterCoin.length === userCoins.length) {
+                sum = masterCoin.reduce((acc, masterCoinVal, idx) => acc + masterCoinVal * userCoins[idx], 0);
+                // Calculate total by adding sum and freeCoins
+                const total = sum + freeCoins;
+                return total;
+            } else {
+                console.error("Arrays must have the same length for element-wise multiplication.");
+                return null;
             }
         }
 
