@@ -75,7 +75,7 @@ exports.handler = async (event, context) => {
 
         // Calculate total function
         async function calculateTotal() {
-            var sum = 0.0;
+            let sum;
             // Your total calculation logic goes here
             // masterCoin array
             //userCoins array
