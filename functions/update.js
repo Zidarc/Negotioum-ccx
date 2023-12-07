@@ -86,8 +86,8 @@ exports.handler = async (event, context) => {
             } else {
                 freeCoins = freeCoins + parseFloat(coinVal).toFixed(3) * serverCoinVal
             }
-            if (masterCoins.length === userCoins.length) {
-                const sum = masterCoins.reduce((acc, masterCoin, index) => acc + masterCoin * userCoins[index], 0);
+            if (masterCoin.length === userCoins.length) {
+                const sum = masterCoin.reduce((acc, masterCoinVal, index) => acc + masterCoinVal * userCoins[index], 0);
               
                 console.log("Sum of the product:", sum);
               } else {
