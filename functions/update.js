@@ -64,12 +64,12 @@ exports.handler = async (event, context) => {
         const serverData = await masterResponse.json();
         let masterCoin = serverData.coins;
         let serverCoinVal = masterCoin[index];
-
+        let sum = 0;
         // Calculate total function
         async function calculateTotal() {
             // Calculate the sum of products of corresponding elements
             if (masterCoin.length === userCoins.length) {
-                const sum = masterCoin.reduce((acc, masterCoinVal, idx) => acc + masterCoinVal * userCoins[idx], 0);
+                sum = masterCoin.reduce((acc, masterCoinVal, idx) => acc + masterCoinVal * userCoins[idx], 0);
                 // Calculate total by adding sum and freeCoins
                 let total = sum + freeCoins;
                 return total;
