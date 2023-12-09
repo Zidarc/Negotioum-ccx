@@ -68,13 +68,5 @@ exports.handler = async (event, context) => {
             statusCode: 500,
             body: JSON.stringify({ error: "Internal Server Error" }),
         };
-    } finally {
-        // Close the MongoDB connection in the finally block
-        try {
-            await mongoose.connection.close();
-            console.log("MongoDB connection closed.");
-        } catch (error) {
-            console.error("Error closing MongoDB connection:", error);
-        }
     }
 };
