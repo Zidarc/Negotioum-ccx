@@ -33,7 +33,7 @@ async function readdata() {
     try {
         const teamId = getTeamId();
         const total = await fetch(`/.netlify/functions/totalworth?teamName=${teamId}`);
-        const response = await fetch(`/.netlify/functions/read?teamName=${teamId}`);
+        const response = await fetch(`/.netlify/functions/read?teamId=${teamId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.statusU}`);
@@ -66,7 +66,7 @@ document.getElementById("readSelectedValue").addEventListener("click", async fun
         let coinval = document.getElementById("update").value;
         const teamId = getTeamId();
         const response = await fetch(`/.netlify/functions/update?cointype=${cointype}&teamId=${teamId}&transactiontype=${transactiontype}&coinval=${coinval}`);
-        const total = await fetch(`/.netlify/functions/totalworth?teamName=${teamId}`);
+        const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
         await readdata();
     } catch (error) {
         document.getElementById("statusN").innerText = " Error: " + error;
