@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function readdata() {
     try {
         const teamId = getTeamId();
-        const total = await fetch(`/.netlify/functions/totalworth?teamName=${teamId}`);
-        const response = await fetch(`/.netlify/functions/read?teamId=${teamId}`);
+        const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
+        const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.statusU}`);
