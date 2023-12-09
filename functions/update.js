@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const UserData = require("../models/userdata");
+// total worth is not updated so calculate total should be outside update
 
 exports.handler = async (event, context) => {
     try {
@@ -70,44 +71,17 @@ exports.handler = async (event, context) => {
         }
 
         const serverData = await masterResponse.json();
-        let masterCoin = serverData.coins;
         let serverCoinVal = serverData.coins[index];
 
         // Calculate total function
-        async function calculateTotal() {
-            let sum;
-            // Your total calculation logic goes here
-            // masterCoin array
-            //userCoins array
-            // how to add free coin in it, what to do now?
-            // I can calculate free coin through two if statement if buy then user previous free coin - new calculated expense
-            // if sell then previous free coin + new money etc
-            if (type === 1) {
-                freeCoins = freeCoins - parseFloat(coinVal).toFixed(3) * serverCoinVal
-            } else {
-                freeCoins = freeCoins + parseFloat(coinVal).toFixed(3) * serverCoinVal
-            }
-            if (masterCoin.length === userCoins.length) {
-                sum = masterCoin.reduce((acc, masterCoinVal, index) => acc + masterCoinVal * userCoins[index], 0);
-              
-                console.log("Sum of the product:", sum);
-              } else {
-                console.error("Arrays must have the same length for element-wise multiplication.");
-              }
-            let total = sum + freeCoins;
-            return total;
-        }
-
+        
         if (type === 1) {
             if (coinVal <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
-                userCoins[index] = userCoinVal + parseFloat(coinVal).toFixed(3);
                     const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal)), 
-                                total_worth: await calculateTotal()
-                    },
+                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal))},
                         $inc: { free_money: -(parseFloat(coinVal).toFixed(3) * serverCoinVal) },
                     },
 
@@ -127,13 +101,10 @@ exports.handler = async (event, context) => {
             }
         } else if (type === 2) {
             if (coinVal <= userCoinVal) {
-                userCoins[index] = userCoinVal - parseFloat(coinVal).toFixed(3);
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coinVal).toFixed(3)), 
-                                total_worth: await calculateTotal()
-                    },
+                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coinVal).toFixed(3))},
                         $inc: { free_money: parseFloat(coinVal).toFixed(3) * serverCoinVal },
                     },
                     { new: true } // Return the modified document rather than the original
@@ -152,8 +123,9 @@ exports.handler = async (event, context) => {
                 };
             }
         }
-        
-
+// when i change it manually the total worth function wont run so it must run when dom content is loaded so it must be a new serverless function that is called when on the case for update and when the page is loaded
+// new database
+// is calculation on this for total worth
 
 
 
