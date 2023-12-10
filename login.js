@@ -2,6 +2,12 @@ import { setTeamId } from "./teamdata.js";
 function setTeamIdAfterLogin(id) {
     setTeamId(id);
 }
+
+document.addEventListener("DOMContentLoaded", async function () { 
+    setTeamIdAfterLogin("");
+    document.getElementById('teamName').value = "";
+    document.getElementById('password').value = "";
+})
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;

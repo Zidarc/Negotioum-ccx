@@ -64,8 +64,10 @@ button:hover {
 }
 
 #errorbox {
-    color: red;
+    color: wheat;
     margin-top: 10px;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 @media (max-width: 600px) {
