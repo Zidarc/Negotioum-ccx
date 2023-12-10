@@ -91,3 +91,11 @@ button:hover {
     padding-bottom: 30px;
     width :50%
 }
+@media (max-width: 600px) {
+    .center-block {
+        width: 90%;
+    }
+    input{
+        width: 50%;
+    }
+}
