@@ -41,11 +41,12 @@ input {
     margin: 5px 0;
     border: none;
     border-bottom: 1px solid #d8c8b1;
-    background-color: transparent;
+    background-color: transparent !important;
     color: #d8c8b1;
     outline: none;
     text-align: center;
 }
+
 
 
 button {
