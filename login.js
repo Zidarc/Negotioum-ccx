@@ -3,11 +3,16 @@ function setTeamIdAfterLogin(id) {
     setTeamId(id);
 }
 
-document.addEventListener("DOMContentLoaded", async function () { 
-    setTeamIdAfterLogin("");
-    document.getElementById('teamName').value = "";
-    document.getElementById('password').value = "";
-})
+window.addEventListener('pageshow', function(event) {
+    // Check if the page is in the navigation history
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        // This means the page is being fetched from the back-forward cache
+        // You may want to reset your form or clear data here
+        setTeamIdAfterLogin("");
+        document.getElementById('teamName').value = "";
+        document.getElementById('password').value = "";
+    }
+});
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
