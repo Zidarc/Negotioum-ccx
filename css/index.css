@@ -2,21 +2,23 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-image: url('https://i.postimg.cc/nhSZ3mg5/Capture.png'); /* Replace with your actual background image path */
+    background-image: url('https://i.postimg.cc/nhSZ3mg5/Capture.png');
     background-size: cover;
     background-position: center;
     height: 100vh;
-
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .container {
-    width: 50%;
-    background-color: rgba(75, 25, 26, 0.5); /* Replace with your desired color and opacity */
+    max-width: 50%; /* Use max-width instead of width */
+    width: 100%; /* Ensure the container takes the full width when the screen is smaller than 50% */
+    background-color: rgba(75, 25, 26, 0.5);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
 }
 
 h1 {
@@ -37,11 +39,14 @@ label {
 input {
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid #d8c8b1;
-    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid #d8c8b1;
     background-color: transparent;
     color: #d8c8b1;
+    outline: none;
+    text-align: center;
 }
+
 
 button {
     padding: 10px;
@@ -77,8 +82,9 @@ button:hover {
     margin-right: auto;
     margin-left: auto;
     display: block;
+    margin-bottom: 35vh;
     margin-top: 40vh;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     width :50%
 }
