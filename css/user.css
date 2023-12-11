@@ -132,3 +132,6 @@ td.p7 {
 .updateline button:hover {
     background-color: #45a049;
 }
+pre {
+    font-size: large !important;
+}
