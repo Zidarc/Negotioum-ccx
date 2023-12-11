@@ -1,0 +1,134 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../binary-code-background-vector-36324133.jpg');
+    background-size: contain;
+    background-position: center;
+    color: wheat;
+  }
+
+#stick-layer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    z-index: 1000; /* Set a high z-index to ensure it's above other elements */
+}
+
+  
+#information {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: scrollText 12s linear infinite;
+    width: max-content;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(100%); color: white; }
+    100% { transform: translateX(-100%); color: white; }
+}
+#attention {
+    color: red;
+}
+
+
+table {
+    margin-top: 50px;
+    width: 80%;
+    border-collapse: collapse;
+    margin-right: auto;
+    margin-left:auto;
+    z-index: 99; /* Ensure the table appears below the navbar */
+    background-color:transparent;/* White background with 80% opacity for the blur effect */
+    backdrop-filter: blur(2px); /* Adjust the blur strength as needed */
+    text-align: center;
+    font-size: medium;
+
+
+  }
+  
+  td {
+    padding: 10px;
+    border: 1px solid white;
+  }
+  
+  tr:nth-child(even) {
+    backdrop-filter: blur(5px);
+    background-color: transparent;
+  }
+  
+  tr:nth-child(odd) {
+    backdrop-filter: blur(5px);
+    background-color: transparent;
+  }
+  
+  #status {
+    font-weight: bold;
+    color: #FFD700; /* Gold color for the status */
+  }
+td.p3 {
+    width: 30%;
+}
+
+td.p7 {
+    width: 70%;
+}
+
+
+.updateline {
+    text-align: center;
+    color: white;
+    font-size: medium;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+}
+
+.updateline p,
+.updateline label,
+.updateline select,
+.updateline button {
+    display: inline-block;
+    margin: 5px;
+    font-size: large;
+    color: white;
+    font-weight: bolder;
+}
+
+.updateline select,
+.updateline button {
+    vertical-align: middle;
+}
+
+.updateline label {
+    color: wheat;
+}
+
+.updateline input[type="number"],
+.updateline select {
+
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border: none;
+    font-size: medium;
+}
+
+.updateline button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.updateline button:hover {
+    background-color: #45a049;
+}

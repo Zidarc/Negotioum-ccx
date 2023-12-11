@@ -2,56 +2,103 @@
 <html>
 <head>
     <title>Negotium</title>
+    <link rel="stylesheet"  href="./css/user.css">
+
 </head>
 <body>
-    <h1>Tests</h1>
 
-    <p>Status: <span id="status"></span></p>
-    <span>Current Value</span>
-    <p>Bitcoin<span id="Bitcoin"></span></p>
-    <p>Polkadot:<span id="Polkadot"></span></p>
-    <p>Luna: <span id="Luna"></span></p>
-    <p>Dogecoin: <span id="Dogecoin"></span></p>
-    <p>XRP: <span id="XRP"></span></p>
-    <p>BNB: <span id="BNB"></span></p>
+    <div id="stick-layer">
+        <div id="information"><span id="attention">IMPORTANT NEWS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NORTH KOREA HAS ATTACKED SEOUL. DUE TO PANIC, BANKS HAVE FALLEN, CAUSING A SUDDEN RISE IN CRYPTO PRICES.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="attention">IMPORTANT NEWS</span></div>
+    </div>
+    <table>
+        <tr>
+            <td class="p3">Status:</td>
+            <td class="p7"><span id="status"></span></td>
+        </tr>
+        <tr>
+          <td>Bitcoin</td>
+          <td id="Bitcoin"></td>
+        </tr>
+        <tr>
+          <td>Polkadot</td>
+          <td id="Polkadot"></td>
+        </tr>
+        <tr>
+          <td>Luna</td>
+          <td id="Luna"></td>
+        </tr>
+        <tr>
+          <td>Dogecoin</td>
+          <td id="Dogecoin"></td>
+        </tr>
+        <tr>
+          <td>XRP</td>
+          <td id="XRP"></td>
+        </tr>
+        <tr>
+          <td>BNB</td>
+          <td id="BNB"></td>
+        </tr>
+      </table>
+      
 
-    <p>Status: <span id="statusU"></span></p>
-    <span>In possesion</span>
-    <p>Bitcoin<span id="BitcoinU"></span></p>
-    <p>Polkadot:<span id="PolkadotU"></span></p>
-    <p>Luna: <span id="LunaU"></span></p>
-    <p>Dogecoin: <span id="DogecoinU"></span></p>
-    <p>XRP: <span id="XRPU"></span></p>
-    <p>BNB: <span id="BNBU"></span></p>
-    <p>Free money: <span id="FreeMoney"></span></p>
-    <p>TotalWorth: <span id="TotalWorth"></span></p>
+      <table>
+        <tr>
+            <td class="p3">Status:</td>
+            <td class="p7"><span id="statusU"></span></td>
+        </tr>
+        <tr>
+            <td>Bitcoin</td>
+            <td><span id="BitcoinU"></span></td>
+        </tr>
+        <tr>
+            <td>Polkadot</td>
+            <td><span id="PolkadotU"></span></td>
+        </tr>
+        <tr>
+            <td>Luna</td>
+            <td><span id="LunaU"></span></td>
+        </tr>
+        <tr>
+            <td>Dogecoin</td>
+            <td><span id="DogecoinU"></span></td>
+        </tr>
+        <tr>
+            <td>XRP</td>
+            <td><span id="XRPU"></span></td>
+        </tr>
+        <tr>
+            <td>BNB</td>
+            <td><span id="BNBU"></span></td>
+        </tr>
+        <tr>
+            <td>Free money</td>
+            <td><span id="FreeMoney"></span></td>
+        </tr>
+        <tr>
+            <td>TotalWorth</td>
+            <td><span id="TotalWorth"></span></td>
+        </tr>
+    </table>
+    
+    <div class="updateline">
+        <p>Status: <span id="statusN"></span></p>
+        <p>Update<input type="number" id="update" name="update" min="0"></p>
+        <select id="CoinType">
+            <option value="bitcoin">Bitcoin</option>
+            <option value="polkadot">Polkadot</option>
+            <option value="luna">Luna</option>
+            <option value="dogecoin">DogeCoin</option>
+            <option value="xrp">XRP</option>
+            <option value="bnb">BNB</option>
+        </select>
+        <select id="transactionType">
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+        </select>
 
-    <p>Status: <span id="statusN"></span></p>
-    <p>Update<input type="number" id="update" name="update" min="0"></p>
-    <label for="CoinType">Select Transaction Type:</label>
-    <select id="CoinType">
-        <option value="bitcoin">Bitcoin</option>
-        <option value="polkadot">Polkadot</option>
-        <option value="luna">Luna</option>
-        <option value="dogecoin">DogeCoin</option>
-        <option value="xrp">XRP</option>
-        <option value="bnb">BNB</option>
-    </select>
-    <label for="transactionType">Select Transaction Type:</label>
-    <select id="transactionType">
-        <option value="buy">Buy</option>
-        <option value="sell">Sell</option>
-    </select>
-
-    <button id = "readSelectedValue">Submit</button>
-
-    <p>Free money: <span id="FreeMoneyN"></span></p>
-    <p>TotalWorth: <span id="TotalWorthN"></span></p>
-
-
-
-
-
+        <button id = "readSelectedValue">Submit</button>
+    </div>
     <script type="module" src="./teamdata.js" defer></script>
     <script type="module" src="./module.js" defer></script>
 
