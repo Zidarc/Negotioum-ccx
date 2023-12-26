@@ -59,8 +59,9 @@ body {
     text-align: center;
     color: gold;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 2em;
     margin-top: 15vh;
+    display: inline-flex;
 }
 .Update_Word {
     margin-right: 10px;
