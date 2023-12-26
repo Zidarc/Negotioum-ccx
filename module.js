@@ -1,6 +1,7 @@
 import { getTeamId } from "./teamdata.js";
-
-
+let masterCoin;
+let userCoins;
+let freeCoins;
 document.addEventListener("DOMContentLoaded", async function () { 
     try {
         const teamName = 'MasterCoins';
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         const data = await response.json();
-
+        masterCoin = data.coins;
         if (data.error) {
             //document.getElementById("status").innerText = `Error: ${data.error}`;
         } else {
@@ -73,7 +74,9 @@ async function readdata() {
         }
 
         const data = await response.json();
-
+        userCoins = data.coins;
+        freeCoins = data.free_money;
+        let sum = freeCoins + (masterCoin.reduce((acc, masterCoinVal, index) => acc + masterCoinVal * userCoins[index], 0));
         if (data.error) {
             document.getElementById("statusU").innerText = `Error: ${data.error}`;
         } else {
@@ -85,7 +88,7 @@ async function readdata() {
             document.getElementById("BNBU").innerHTML = "<pre>" + data.coins[5] + "</pre>";
             document.getElementById("EthereumU").innerHTML = "<pre>" + data.coins[6] + "</pre>";            
             document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
-            //document.getElementById("TotalWorth").innerHTML = "<pre>" + data.total_worth + "</pre>";
+            document.getElementById("TotalWorth").innerHTML = "<pre>" + sum + "</pre>";
 
             };
 
