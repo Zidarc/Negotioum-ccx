@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = await response.json();
 
         if (data.error) {
-            document.getElementById("status").innerText = `Error: ${data.error}`;
+            //document.getElementById("status").innerText = `Error: ${data.error}`;
         } else {
             document.getElementById("Bitcoin").innerHTML = "<pre>" + data.coins[0] + "</pre>";
             document.getElementById("Polkadot").innerHTML = "<pre>" + data.coins[1] + "</pre>";
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
         await readdata();
     } catch (error) {
-        document.getElementById("status").innerText = "Error: " + error;
+        //document.getElementById("status").innerText = "Error: " + error;
     }
 });
 
@@ -90,7 +90,7 @@ async function readdata() {
 
 
     } catch (error) {
-        document.getElementById("statusU").innerText = "Error: " + error;
+        //document.getElementById("statusU").innerText = "Error: " + error;
     }
 }
 
@@ -104,7 +104,7 @@ document.getElementById("readSelectedValue").addEventListener("click", async fun
         const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
         await readdata();
     } catch (error) {
-        document.getElementById("statusN").innerText = " Error: " + error;
+        //document.getElementById("statusN").innerText = " Error: " + error;
     }
 });
 
