@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("Dogecoin").innerHTML = "<pre>" + data.coins[3] + "</pre>";
             document.getElementById("XRP").innerHTML = "<pre>" + data.coins[4] + "</pre>";
             document.getElementById("BNB").innerHTML = "<pre>" + data.coins[5] + "</pre>";
-            document.getElementById("Ethereum").innerText = "<pre>" + data.coins[6] + "</pre>";
+            document.getElementById("Ethereum").innerHTML = "<pre>" + data.coins[6] + "</pre>";
             document.getElementById("status").innerText = "Data fetched successfully.";
             
             document.getElementById("BTC").innerText = 
