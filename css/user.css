@@ -27,6 +27,9 @@ body {
     .user_panel{
         padding-bottom: 5vh;
     }
+    .Master_Table{
+        margin-top: 0vh;
+    }
     }
 
 #stick-layer {
@@ -92,8 +95,8 @@ table {
     border-collapse: collapse;
     margin-right: auto;
     margin-left: auto;
-    background-color:transparent;/* White background with 80% opacity for the blur effect */
-    backdrop-filter: blur(2px); /* Adjust the blur strength as needed */
+    background-color:transparent;
+    backdrop-filter: blur(2px); 
     text-align: center;
     font-size: medium;
 
