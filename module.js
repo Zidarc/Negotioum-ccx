@@ -116,7 +116,7 @@ document.getElementById("readSelectedValue").addEventListener("click", async fun
         let coinval = document.getElementById("update").value;
         const teamId = getTeamId();
         const response = await fetch(`/.netlify/functions/update?cointype=${cointype}&teamId=${teamId}&transactiontype=${transactiontype}&coinval=${coinval}`);
-        const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
+        //const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
         await readdata();
     } catch (error) {
         //document.getElementById("statusN").innerText = " Error: " + error;
