@@ -53,17 +53,19 @@ document.addEventListener("DOMContentLoaded", async function () {
                 data.coins_previous < 0 ? "trending_down" :
                 "unknown_med";
         
-            await readdata();
+            
         }
     } catch (error) {
         //document.getElementById("status").innerText = "Error: " + error;
+    }finally{
+        await readdata();
     }
 });
 
 async function readdata() {
     try {
         const teamId = getTeamId();
-        const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
+        //const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
         const response = await fetch(`/.netlify/functions/read?teamName=${teamId}`);
 
         if (!response.ok) {
@@ -83,7 +85,7 @@ async function readdata() {
             document.getElementById("BNBU").innerHTML = "<pre>" + data.coins[5] + "</pre>";
             document.getElementById("EthereumU").innerHTML = "<pre>" + data.coins[6] + "</pre>";            
             document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
-            document.getElementById("TotalWorth").innerHTML = "<pre>" + data.total_worth + "</pre>";
+            //document.getElementById("TotalWorth").innerHTML = "<pre>" + data.total_worth + "</pre>";
 
             };
 
