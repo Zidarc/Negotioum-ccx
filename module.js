@@ -16,22 +16,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (data.error) {
             //document.getElementById("status").innerText = `Error: ${data.error}`;
         } else {
-            document.getElementById("Bitcoin").innerHTML = "<pre>" + data.coins[0] + "</pre>";
-            document.getElementById("Polkadot").innerHTML = "<pre>" + data.coins[1] + "</pre>";
-            document.getElementById("Luna").innerHTML = "<pre>" + data.coins[2] + "</pre>";
-            document.getElementById("Dogecoin").innerHTML = "<pre>" + data.coins[3] + "</pre>";
-            document.getElementById("XRP").innerHTML = "<pre>" + data.coins[4] + "</pre>";
-            document.getElementById("BNB").innerHTML = "<pre>" + data.coins[5] + "</pre>";
-            document.getElementById("Ethereum").innerHTML = "<pre>" + data.coins[6] + "</pre>";
+            const coinId = ["Bitcoin", "Polkadot", "Luna", "Dogecoin", "XRP", "BNB", "Ethereum"];
+
+            coinId.forEach((coinId, index) => {
+                const htmlContent = `<pre>${data.coins[index]}</pre>`;
+                document.getElementById(coinId).innerHTML = htmlContent;
+            });
             //document.getElementById("status").innerText = "Data fetched successfully.";
 
-            document.getElementById("PriceChangeBTC").innerHTML = "<pre>" + data.coins_previous[0] + "</pre>";
-            document.getElementById("PriceChangeDOT").innerHTML = "<pre>" + data.coins_previous[1] + "</pre>";
-            document.getElementById("PriceChangeLUNA").innerHTML = "<pre>" + data.coins_previous[2] + "</pre>";
-            document.getElementById("PriceChangeDOGE").innerHTML = "<pre>" + data.coins_previous[3] + "</pre>";
-            document.getElementById("PriceChangeXRP").innerHTML = "<pre>" + data.coins_previous[4] + "</pre>";
-            document.getElementById("PriceChangeBNB").innerHTML = "<pre>" + data.coins_previous[5] + "</pre>";
-            document.getElementById("PriceChangeETH").innerHTML = "<pre>" + data.coins_previous[6] + "</pre>";
+            const pccoinIds = ["BTC", "DOT", "LUNA", "DOGE", "XRP", "BNB", "ETH"];
+
+           pccoinIds.forEach((coinId, index) => {
+                const priceChangeId = `PriceChange${coinId}`;
+                const htmlContent = `<pre>${data.coins_previous[index]}</pre>`;
+                document.getElementById(priceChangeId).innerHTML = htmlContent;
+            });
+            
            // document.getElementById("status").innerText = "Data fetched successfully.";
 
            const coinIds = ["BTC", "DOT", "Terra", "DOGE", "xrp", "bnb", "ETH"];
@@ -68,15 +68,15 @@ async function readdata() {
         freeCoins = data.free_money;
         let sum = freeCoins + (masterCoin.reduce((acc, masterCoinVal, index) => acc + masterCoinVal * userCoins[index], 0));
         if (data.error) {
-            document.getElementById("statusU").innerText = `Error: ${data.error}`;
+            //document.getElementById("statusU").innerText = `Error: ${data.error}`;
         } else {
-            document.getElementById("BitcoinU").innerHTML = "<pre>" + data.coins[0] + "</pre>";
-            document.getElementById("PolkadotU").innerHTML = "<pre>" + data.coins[1] + "</pre>";
-            document.getElementById("LunaU").innerHTML = "<pre>" + data.coins[2] + "</pre>";
-            document.getElementById("DogecoinU").innerHTML = "<pre>" + data.coins[3] + "</pre>";
-            document.getElementById("XRPU").innerHTML = "<pre>" + data.coins[4] + "</pre>";
-            document.getElementById("BNBU").innerHTML = "<pre>" + data.coins[5] + "</pre>";
-            document.getElementById("EthereumU").innerHTML = "<pre>" + data.coins[6] + "</pre>";            
+            const coinIdsU = ["BitcoinU", "PolkadotU", "LunaU", "DogecoinU", "XRPU", "BNBU", "EthereumU"];
+
+            coinIdsU.forEach((coinId, index) => {
+                const htmlContent = `<pre>${data.coins[index]}</pre>`;
+                document.getElementById(coinId).innerHTML = htmlContent;
+            });
+                   
             document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
             document.getElementById("TotalWorth").innerHTML = "<pre>" + sum + "</pre>";
 
