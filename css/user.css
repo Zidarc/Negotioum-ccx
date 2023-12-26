@@ -59,9 +59,9 @@ body {
     text-align: center;
     color: gold;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1.2em;
     margin-top: 15vh;
-    display: inline-flex;
+    display: inline;
 }
 .Update_Word {
     margin-right: 10px;
@@ -72,7 +72,7 @@ body {
 }
 .Balance #TotalWorth {
     color: white;
-    font-size: 1.5em;
+    font-size: 2em !important;
 }
 
 .sidepanel{
