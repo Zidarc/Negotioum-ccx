@@ -23,35 +23,44 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("XRP").innerHTML = "<pre>" + data.coins[4] + "</pre>";
             document.getElementById("BNB").innerHTML = "<pre>" + data.coins[5] + "</pre>";
             document.getElementById("Ethereum").innerHTML = "<pre>" + data.coins[6] + "</pre>";
-            document.getElementById("status").innerText = "Data fetched successfully.";
-            
+            //document.getElementById("status").innerText = "Data fetched successfully.";
+
+            document.getElementById("PriceChangeBTC").innerHTML = "<pre>" + data.coins_previous[0] + "</pre>";
+            document.getElementById("PriceChangeDOT").innerHTML = "<pre>" + data.coins_previous[1] + "</pre>";
+            document.getElementById("PriceChangeLUNA").innerHTML = "<pre>" + data.coins_previous[2] + "</pre>";
+            document.getElementById("PriceChangeDOGE").innerHTML = "<pre>" + data.coins_previous[3] + "</pre>";
+            document.getElementById("PriceChangeXRP").innerHTML = "<pre>" + data.coins_previous[4] + "</pre>";
+            document.getElementById("PriceChangeBNB").innerHTML = "<pre>" + data.coins_previous[5] + "</pre>";
+            document.getElementById("PriceChangeETH").innerHTML = "<pre>" + data.coins_previous[6] + "</pre>";
+           // document.getElementById("status").innerText = "Data fetched successfully.";
+
             document.getElementById("BTC").innerText = 
-                data.coins_previous > 0 ? "trending_up" :
-                data.coins_previous < 0 ? "trending_down" :
+                data.coins_previous[0] > 0 ? "trending_up" :
+                data.coins_previous[0] < 0 ? "trending_down" :
                 "unknown_med";
             document.getElementById("DOT").innerText = 
-                data.coins_previous > 0 ? "trending_up" :
-                data.coins_previous < 0 ? "trending_down" :
+                data.coins_previous[1] > 0 ? "trending_up" :
+                data.coins_previous[1] < 0 ? "trending_down" :
                 "unknown_med";
             document.getElementById("Terra").innerText = 
-                data.coins_previous > 0 ? "trending_up" :
-                data.coins_previous < 0 ? "trending_down" :
+                data.coins_previous[2] > 0 ? "trending_up" :
+                data.coins_previous[2] < 0 ? "trending_down" :
                 "unknown_med";
             document.getElementById("DOGE").innerText = 
-                data.coins_previous > 0 ? "trending_up" :
-                data.coins_previous < 0 ? "trending_down" :
+                data.coins_previous[3] > 0 ? "trending_up" :
+                data.coins_previous[3] < 0 ? "trending_down" :
                 "unknown_med";
             document.getElementById("xrp").innerText = 
-                data.coins_previous > 0 ? "trending_up" :
-                data.coins_previous < 0 ? "trending_down" :
+                data.coins_previous[4] > 0 ? "trending_up" :
+                data.coins_previous[4] < 0 ? "trending_down" :
                 "unknown_med";
             document.getElementById("bnb").innerText = 
-                data.coins_previous > 0 ? "trending_up" :
-                data.coins_previous < 0 ? "trending_down" :
+                data.coins_previous[5] > 0 ? "trending_up" :
+                data.coins_previous[5] < 0 ? "trending_down" :
                 "unknown_med";
             document.getElementById("ETH").innerText = 
-                data.coins_previous > 0 ? "trending_up" :
-                data.coins_previous < 0 ? "trending_down" :
+                data.coins_previous[6] > 0 ? "trending_up" :
+                data.coins_previous[6] < 0 ? "trending_down" :
                 "unknown_med";
         
             
