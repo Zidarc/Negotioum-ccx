@@ -21,7 +21,37 @@ document.addEventListener("DOMContentLoaded", async function () {
             document.getElementById("Dogecoin").innerHTML = "<pre>" + data.coins[3] + "</pre>";
             document.getElementById("XRP").innerHTML = "<pre>" + data.coins[4] + "</pre>";
             document.getElementById("BNB").innerHTML = "<pre>" + data.coins[5] + "</pre>";
+            document.getElementById("Ethereum").innerText = "<pre>" + data.coins[6] + "</pre>";
             document.getElementById("status").innerText = "Data fetched successfully.";
+            
+            document.getElementById("BTC").innerText = 
+                data.coins_previous > 0 ? "trending_up" :
+                data.coins_previous < 0 ? "trending_down" :
+                "unknown_med";
+            document.getElementById("DOT").innerText = 
+                data.coins_previous > 0 ? "trending_up" :
+                data.coins_previous < 0 ? "trending_down" :
+                "unknown_med";
+            document.getElementById("Terra").innerText = 
+                data.coins_previous > 0 ? "trending_up" :
+                data.coins_previous < 0 ? "trending_down" :
+                "unknown_med";
+            document.getElementById("DOGE").innerText = 
+                data.coins_previous > 0 ? "trending_up" :
+                data.coins_previous < 0 ? "trending_down" :
+                "unknown_med";
+            document.getElementById("xrp").innerText = 
+                data.coins_previous > 0 ? "trending_up" :
+                data.coins_previous < 0 ? "trending_down" :
+                "unknown_med";
+            document.getElementById("bnb").innerText = 
+                data.coins_previous > 0 ? "trending_up" :
+                data.coins_previous < 0 ? "trending_down" :
+                "unknown_med";
+            document.getElementById("ETH").innerText = 
+                data.coins_previous > 0 ? "trending_up" :
+                data.coins_previous < 0 ? "trending_down" :
+                "unknown_med";
         }
         await readdata();
     } catch (error) {
@@ -50,10 +80,16 @@ async function readdata() {
             document.getElementById("DogecoinU").innerHTML = "<pre>" + data.coins[3] + "</pre>";
             document.getElementById("XRPU").innerHTML = "<pre>" + data.coins[4] + "</pre>";
             document.getElementById("BNBU").innerHTML = "<pre>" + data.coins[5] + "</pre>";
+            document.getElementById("EthereumU").innerHTML = "<pre>" + data.coins[6] + "</pre>";            
             document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
             document.getElementById("TotalWorth").innerHTML = "<pre>" + data.total_worth + "</pre>";
             document.getElementById("statusU").innerText = "Data fetched successfully.";
-        }
+
+            };
+
+                    
+
+
     } catch (error) {
         document.getElementById("statusU").innerText = "Error: " + error;
     }

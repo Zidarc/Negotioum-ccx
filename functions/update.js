@@ -35,6 +35,8 @@ exports.handler = async (event, context) => {
             index = 4;
         } else if (coinType === "bnb") {
             index = 5;
+        } else if (coinType === "eth"){
+            index = 6;
         } else {
             console.error("Invalid coinType:", coinType);
             return {

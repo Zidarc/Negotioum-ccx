@@ -2,11 +2,32 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1e2329;
+    background-color: #22262b;
     background-size: contain;
     background-position: center;
     color: wheat;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: row;   
+    height: 100vh;
   }
+  @media (max-width: 768px) {
+    .sidepanel{
+        width: 100% !important;
+        border-right:none !important;
+        padding-bottom: 2vh;
+        border-bottom: 2px solid black ;
+        margin-top: -10vh;
+        padding-top: 5vh;
+    }
+    body {
+        display: block;
+        margin: 0 !important;
+    }
+    .user_panel{
+        padding-bottom: 5vh;
+    }
+    }
 
 #stick-layer {
     position: fixed;
@@ -34,14 +55,41 @@ body {
     color: red;
 }
 
+.Balance {
+    text-align: center;
+    color: gold;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 15vh;
+}
+.Update_Word {
+    margin-right: 10px;
+}
 
+.user_panel {
+    flex-grow: 1;
+}
+.Balance #TotalWorth {
+    color: white;
+    font-size: 1.5em;
+}
+
+.sidepanel{
+    width: 40%;
+    background-color: #1e2329;
+    border-right: 2px solid black;
+    flex: 0 0 auto;
+}
+.Master_Table {
+    margin-top: 20vh;
+}
 table {
     margin-top: 50px;
+    flex-grow: 1;
     width: 80%;
     border-collapse: collapse;
     margin-right: auto;
-    margin-left:auto;
-    z-index: 99; /* Ensure the table appears below the navbar */
+    margin-left: auto;
     background-color:transparent;/* White background with 80% opacity for the blur effect */
     backdrop-filter: blur(2px); /* Adjust the blur strength as needed */
     text-align: center;
@@ -51,31 +99,26 @@ table {
   }
   
   td {
-    padding: 10px;
-    border: 1px solid white;
+    padding: 5px;
+    width: fit-content;
   }
   
   tr:nth-child(even) {
     backdrop-filter: blur(5px);
     background-color: transparent;
+    width: fit-content;
   }
   
   tr:nth-child(odd) {
     backdrop-filter: blur(5px);
     background-color: transparent;
+    width: fit-content;
   }
   
   #status {
     font-weight: bold;
     color: #FFD700; /* Gold color for the status */
   }
-td.p3 {
-    width: 30%;
-}
-
-td.p7 {
-    width: 70%;
-}
 
 
 .updateline {
@@ -134,4 +177,20 @@ td.p7 {
 }
 pre {
     font-size: medium !important;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  color: red;
+}
+
+.trending-green {
+    color:green !important;
+}
+.trend-black {
+    color:black !important;
 }

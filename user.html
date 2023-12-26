@@ -1,106 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Negotium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet"  href="./css/user.css">
+    
 
 </head>
 <body>
-
+    <!--
     <div id="stick-layer">
         <div id="information"><span id="attention">IMPORTANT NEWS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NORTH KOREA HAS ATTACKED SEOUL. DUE TO PANIC, BANKS HAVE FALLEN, CAUSING A SUDDEN RISE IN CRYPTO PRICES.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="attention">IMPORTANT NEWS</span></div>
     </div>
-    <table>
-        <tr>
-            <td class="p3">Status:</td>
-            <td class="p7"><span id="status"></span></td>
-        </tr>
-        <tr>
-          <td>Bitcoin</td>
-          <td id="Bitcoin"></td>
-        </tr>
-        <tr>
-          <td>Polkadot</td>
-          <td id="Polkadot"></td>
-        </tr>
-        <tr>
-          <td>Luna</td>
-          <td id="Luna"></td>
-        </tr>
-        <tr>
-          <td>Dogecoin</td>
-          <td id="Dogecoin"></td>
-        </tr>
-        <tr>
-          <td>XRP</td>
-          <td id="XRP"></td>
-        </tr>
-        <tr>
-          <td>BNB</td>
-          <td id="BNB"></td>
-        </tr>
-      </table>
+    -->
+    <div class="sidepanel">
+        <table class="Master_Table">
+            <tr>
+                <td>
+
+                </td>
+                <td style="color:  rgb(255, 202, 103);">COIN</td>
+                <td style="color:  rgb(255, 202, 103);">Worth</td>
+                <td><span id="pricechange"></span></td>
+                <td>
+
+                </td>
+ 
+            </tr>
+            <tr>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">
+                    <path fill="#ffc107" d="M44,24c0,11.044-8.956,20-20,20S4,35.044,4,24S12.956,4,24,4S44,12.956,44,24z"></path><path fill="#fff8e1" d="M17,34V14h8.199c2.41,0,4.234,0.465,5.48,1.395s1.867,2.293,1.867,4.086c0,0.98-0.25,1.844-0.746,2.59c-0.5,0.746-1.195,1.293-2.086,1.641c1.016,0.258,1.816,0.773,2.402,1.555C32.703,26.043,33,26.992,33,28.121c0,1.922-0.609,3.379-1.828,4.367S28.219,33.98,25.965,34H17z M21,22h4.363c2.063-0.035,3.098-0.824,3.098-2.445c0-0.906-0.262-1.559-0.785-1.957S26.328,17,25.199,17H21V22z M21,25v6h4.844C26.805,31,29,30.531,29,28.391S27.883,25.027,26,25H21z"></path><path fill="#fff8e1" d="M20 11h3v5h-3V11zM25 11h3v5h-3V11zM20 32h3v5h-3V32zM25 32h3v5h-3V32z"></path>
+                    </svg>
+                </td>
+                <td>Bitcoin (BTC)</td>
+                <td id="Bitcoin"></td>
+                <td id="PriceChange"></td>
+                <td>
+                    <span class="material-symbols-outlined trend-black" id="BTC">
+                        unknown_med
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href='https://postimages.org/' target='_blank'>
+                        <img src='https://i.postimg.cc/nh4RJnnt/icons8-polkadot-64.png' border='0' alt='icons8-polkadot-64' style='width: 25px; height: 25px;'/>
+                    </a>
+                </td>
+                <td>Polkadot (DOT)</td>
+                <td id="Polkadot"></td>
+                <td id="PriceChange"></td>
+                <td>
+                    <span class="material-symbols-outlined trend-black" id="DOT">
+                        unknown_med
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href='https://postimages.org/' target='_blank'>
+                        <img src='https://i.postimg.cc/J0LJxGz2/terra-luna-icon.png' border='0' alt='terra-luna-icon' style='width: 25px; height: 25px;'/>
+                    </a>
+                </td>
+                <td>Terra Luna (LUNA)</td>
+                <td id="Luna"></td>
+                <td id="PriceChange"></td>
+                <td>
+                    <span class="material-symbols-outlined trend-black" id="Terra">
+                        unknown_med
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href='https://postimages.org/' target='_blank'>
+                        <img src='https://i.postimg.cc/Nf7M4dv6/dogecoin-4894534.png' border='0' alt='dogecoin-4894534' style='width: 25px; height: 25px;'/>
+                    </a>
+                </td>
+                <td>Dogecoin (DOGE)</td>
+                <td id="Dogecoin"></td>
+                <td id="PriceChange"></td>
+                <td>
+                    <span class="material-symbols-outlined trend-black" id="DOGE">
+                        unknown_med
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href='https://postimages.org/' target='_blank'>
+                        <img src='https://i.postimg.cc/tT6s3yzk/xrp-1.png' border='0' alt='xrp-1' style='width: 25px; height: 25px;'/>
+                    </a>
+                </td>
+                <td>XRP</td>
+                <td id="XRP"></td>
+                <td id="PriceChange"></td>
+                <td>
+                    <span class="material-symbols-outlined trend-black" id="xrp">
+                        unknown_med
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href='https://postimages.org/' target='_blank'>
+                        <img src='https://i.postimg.cc/Zq5bYmgn/bnb.png' border='0' alt='bnb' style='width: 25px; height: 25px;'/>
+                    </a>
+                </td>
+                <td>BNB</td>
+                <td id="BNB"></td>
+                <td id="PriceChange"></td>
+                <td>
+                    <span class="material-symbols-outlined trend-black" id="bnb">
+                        unknown_med
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href='https://postimages.org/' target='_blank'>
+                        <img src='https://i.postimg.cc/Y94WdZ1n/eth.png' border='0' alt='eth' style='width: 25px; height: 25px;'/>
+                    </a>
+                </td>
+                <td>Ethereum (ETH)</td>
+                <td id="Ethereum"></td>
+                <td id="PriceChange"></td>
+                <td>
+                    <span class="material-symbols-outlined trend-black" id="ETH">
+                        unknown_med
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>    
       
+    <div class="user_panel">
+        <div class="Balance">
+            BALANCE:
+            <span id="TotalWorth"></span>$
+        </div>
+        <table>
+            <tr>
+                <td style="color:  rgb(255, 202, 103);">COIN</td>
+                <td style="color:  rgb(255, 202, 103);">Worth</td>
+            </tr>
+            <tr>
+                <td>Bitcoin</td>
+                <td><span id="BitcoinU"></span></td>
+            </tr>
+            <tr>
+                <td>Polkadot</td>
+                <td><span id="PolkadotU"></span></td>
+            </tr>
+            <tr>
+                <td>Luna</td>
+                <td><span id="LunaU"></span></td>
+            </tr>
+            <tr>
+                <td>Dogecoin</td>
+                <td><span id="DogecoinU"></span></td>
+            </tr>
+            <tr>
+                <td>XRP</td>
+                <td><span id="XRPU"></span></td>
+            </tr>
+            <tr>
+                <td>BNB</td>
+                <td><span id="BNBU"></span></td>
+            </tr>
+            <tr>
+                <td>Ethereum</td>
+                <td><span id="EthereumU"></span></td>
+            </tr>
+            <tr>
+                <td>Free money</td>
+                <td><span id="FreeMoney"></span></td>
+            </tr>
 
-      <table>
-        <tr>
-            <td class="p3">Status:</td>
-            <td class="p7"><span id="statusU"></span></td>
-        </tr>
-        <tr>
-            <td>Bitcoin</td>
-            <td><span id="BitcoinU"></span></td>
-        </tr>
-        <tr>
-            <td>Polkadot</td>
-            <td><span id="PolkadotU"></span></td>
-        </tr>
-        <tr>
-            <td>Luna</td>
-            <td><span id="LunaU"></span></td>
-        </tr>
-        <tr>
-            <td>Dogecoin</td>
-            <td><span id="DogecoinU"></span></td>
-        </tr>
-        <tr>
-            <td>XRP</td>
-            <td><span id="XRPU"></span></td>
-        </tr>
-        <tr>
-            <td>BNB</td>
-            <td><span id="BNBU"></span></td>
-        </tr>
-        <tr>
-            <td>Free money</td>
-            <td><span id="FreeMoney"></span></td>
-        </tr>
-        <tr>
-            <td>TotalWorth</td>
-            <td><span id="TotalWorth"></span></td>
-        </tr>
-    </table>
-    
-    <div class="updateline">
-        <p>Status: <span id="statusN"></span></p>
-        <p>Update<input type="number" id="update" name="update" min="0"></p>
-        <select id="CoinType">
-            <option value="bitcoin">Bitcoin</option>
-            <option value="polkadot">Polkadot</option>
-            <option value="luna">Luna</option>
-            <option value="dogecoin">DogeCoin</option>
-            <option value="xrp">XRP</option>
-            <option value="bnb">BNB</option>
-        </select>
-        <select id="transactionType">
-            <option value="buy">Buy</option>
-            <option value="sell">Sell</option>
-        </select>
+        </table>
+        
+        <div class="updateline">
 
-        <button id = "readSelectedValue">Submit</button>
+            <!--<p>Status: <span id="statusN"></span></p>-->
+            <p class="Update_Word"><input type="number" id="update" name="update" min="0"></p>
+            <select id="CoinType">
+                <option value="bitcoin">Bitcoin</option>
+                <option value="polkadot">Polkadot</option>
+                <option value="luna">Luna</option>
+                <option value="dogecoin">DogeCoin</option>
+                <option value="xrp">XRP</option>
+                <option value="bnb">BNB</option>
+                <option value="eth">Ethereum</option>
+            </select>
+            <select id="transactionType">
+                <option value="buy">Buy</option>
+                <option value="sell">Sell</option>
+            </select>
+
+            <button id = "readSelectedValue">Submit</button>
+        </div>
     </div>
     <script type="module" src="./teamdata.js" defer></script>
     <script type="module" src="./module.js" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
