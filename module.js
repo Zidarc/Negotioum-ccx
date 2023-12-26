@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 data.coins_previous < 0 ? "trending_down" :
                 "unknown_med";
         
-        await readdata();
+            await readdata();
         }
     } catch (error) {
         //document.getElementById("status").innerText = "Error: " + error;
