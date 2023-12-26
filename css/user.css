@@ -70,7 +70,7 @@ body {
 }
 .Balance #TotalWorth {
     color: white;   
-    font-size: 1.5em !important;
+    font-size: 1.65em !important;
     display: inline-block;
 }
 
@@ -175,9 +175,7 @@ table {
 .updateline button:hover {
     background-color: #45a049;
 }
-pre {
-    font-size: medium;
-}
+
 
 .material-symbols-outlined {
   font-variation-settings:
