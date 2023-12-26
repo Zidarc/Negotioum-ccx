@@ -83,7 +83,6 @@ async function readdata() {
             document.getElementById("EthereumU").innerHTML = "<pre>" + data.coins[6] + "</pre>";            
             document.getElementById("FreeMoney").innerHTML = "<pre>" + data.free_money + "</pre>";
             document.getElementById("TotalWorth").innerHTML = "<pre>" + data.total_worth + "</pre>";
-            document.getElementById("statusU").innerText = "Data fetched successfully.";
 
             };
 
