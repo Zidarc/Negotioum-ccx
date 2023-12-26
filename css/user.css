@@ -73,7 +73,9 @@ body {
     font-size: 1.65em !important;
     display: inline-block;
 }
-
+.Balance pre {
+    margin-bottom: 1vh;
+}
 .sidepanel{
     width: 40%;
     background-color: #1e2329;
