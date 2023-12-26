@@ -59,9 +59,7 @@ body {
     text-align: center;
     color: gold;
     font-weight: bold;
-    font-size: 1.2em;
-    margin-top: 15vh;
-    display: inline-block;
+    margin-top: 2vh;
 }
 .Update_Word {
     margin-right: 10px;
@@ -71,8 +69,8 @@ body {
     flex-grow: 1;
 }
 .Balance #TotalWorth {
-    color: white;
-    font-size: 2em !important;
+    color: white;   
+    font-size: 1.5em !important;
     display: inline-block;
 }
 
@@ -178,7 +176,7 @@ table {
     background-color: #45a049;
 }
 pre {
-    font-size: medium !important;
+    font-size: medium;
 }
 
 .material-symbols-outlined {
