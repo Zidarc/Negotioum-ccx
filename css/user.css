@@ -27,6 +27,7 @@ body {
     .user_panel{
         padding-bottom: 5vh;
         margin-left:0% !important;
+        position: static !important;
     }
     .Master_Table{
         margin-top: 10vh !important;
