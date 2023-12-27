@@ -2,7 +2,11 @@ import { getTeamId } from "./teamdata.js";
 let masterCoin;
 let userCoins;
 let freeCoins;
-document.addEventListener("DOMContentLoaded", async function () { 
+
+document.addEventListener("DOMContentLoaded", async function() {
+    await master();
+});
+async function master() {
     try {
         const teamName = 'MasterCoins';
         const response = await fetch(`/.netlify/functions/read?teamName=${teamName}`);
@@ -24,9 +28,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
             //document.getElementById("status").innerText = "Data fetched successfully.";
 
+
             const pccoinIds = ["BTC", "DOT", "LUNA", "DOGE", "XRP", "BNB", "ETH"];
 
-           pccoinIds.forEach((coinId, index) => {
+            pccoinIds.forEach((coinId, index) => {
                 const priceChangeId = `PriceChange${coinId}`;
                 const htmlContent = `<pre>${data.coins_previous[index]}</pre>`;
                 document.getElementById(priceChangeId).innerHTML = htmlContent;
@@ -43,7 +48,22 @@ document.addEventListener("DOMContentLoaded", async function () {
                
                document.getElementById(coinId).innerText = trendClass;
            });
+
+            coinIds.forEach((coinId) => {
+                const coinDiv = document.getElementById(coinId);
         
+                const coinValue = coinDiv.textContent;
+
+                coinDiv.classList.remove("trending-green", "trending-red", "trend-black");
+        
+                if (coinValue === "trending_up") {
+                    coinDiv.classList.add("trending-green");
+                } else if (coinValue === "trending_down") {
+                    coinDiv.classList.add("trending-red");
+                } else {
+                    coinDiv.classList.add("trend-black");
+                }
+        });
             
         }
     } catch (error) {
@@ -51,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }finally{
         await readdata();
     }
-});
+};
 
 async function readdata() {
     try {
@@ -81,9 +101,6 @@ async function readdata() {
             document.getElementById("TotalWorth").innerHTML = "<pre>" + sum + "</pre>";
 
             };
-
-                    
-
 
     } catch (error) {
         //document.getElementById("statusU").innerText = "Error: " + error;

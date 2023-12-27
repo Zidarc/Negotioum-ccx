@@ -194,6 +194,9 @@ table {
 .trending-green {
     color:green !important;
 }
+.trending-red {
+    color:red !important;
+}
 .trend-black {
     color:black !important;
 }
