@@ -19,6 +19,7 @@ body {
         border-bottom: 2px solid black ;
         margin-top: -10vh;
         padding-top: 5vh;
+        position: static !important;
     }
     body {
         display: block;
@@ -27,7 +28,7 @@ body {
     .user_panel{
         padding-bottom: 5vh;
         margin-left:0% !important;
-        position: static !important;
+
     }
     .Master_Table{
         margin-top: 10vh !important;
