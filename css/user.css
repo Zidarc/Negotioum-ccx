@@ -26,9 +26,16 @@ body {
     }
     .user_panel{
         padding-bottom: 5vh;
+        margin-left:0% !important;
     }
     .Master_Table{
         margin-top: 10vh !important;
+    }
+
+    }
+@media (max-height: 500px){
+    .sidepanel{
+        border-bottom: none !important;
     }
     }
 
@@ -70,6 +77,7 @@ body {
 
 .user_panel {
     flex-grow: 1;
+    margin-left:40%;
 }
 .Balance #TotalWorth {
     color: white;   
@@ -85,6 +93,9 @@ body {
     background-color: #1e2329;
     border-right: 2px solid black;
     flex: 0 0 auto;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 .Master_Table {
     margin-top: 18.3vh;
