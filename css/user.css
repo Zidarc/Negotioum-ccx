@@ -81,12 +81,13 @@ body {
 }
 .sidepanel{
     width: 40%;
+    height:100vh;
     background-color: #1e2329;
     border-right: 2px solid black;
     flex: 0 0 auto;
 }
 .Master_Table {
-    margin-top: 20vh;
+    margin-top: 18.3vh;
 }
 table {
     margin-top: 50px;
@@ -106,16 +107,17 @@ table {
   td {
     padding: 5px;
     width: fit-content;
+    border-bottom: 1px solid black;
   }
   
   tr:nth-child(even) {
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
     background-color: transparent;
     width: fit-content;
   }
   
   tr:nth-child(odd) {
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
     background-color: transparent;
     width: fit-content;
   }
