@@ -75,7 +75,6 @@ exports.handler = async (event, context) => {
         const serverData = await masterResponse.json();
         let serverCoinVal = serverData.coins[index];
         
-        coinVal = coinVal/serverCoinVal;
         if (type === 1) {
             if (coinVal <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
