@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
 
         const coinType = event.queryStringParameters && event.queryStringParameters.cointype;
         const transactionType = event.queryStringParameters && event.queryStringParameters.transactiontype;
-        let coinVal = event.queryStringParameters && event.queryStringParameters.coinval;
+        const coinVal = event.queryStringParameters && event.queryStringParameters.coinval;
         const teamId = event.queryStringParameters && event.queryStringParameters.teamId;
         let index;
         let type;
@@ -74,15 +74,18 @@ exports.handler = async (event, context) => {
 
         const serverData = await masterResponse.json();
         let serverCoinVal = serverData.coins[index];
-        
+
+        let coincount = coinVal/serverCoinVal;
+        coincount = coincount.toFixed(2);
+        coinVal = coinVal.toFixed(2);
         if (type === 1) {
             if (coinVal <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
                     const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coinVal))},
-                        $inc: { free_money: -(parseFloat(coinVal).toFixed(3) * serverCoinVal) },
+                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coincount))},
+                        $inc: { free_money: -(coinVal) },
                     },
 
                 );
@@ -104,8 +107,8 @@ exports.handler = async (event, context) => {
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coinVal).toFixed(3))},
-                        $inc: { free_money: parseFloat(coinVal).toFixed(3) * serverCoinVal },
+                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coincount).toFixed(3))},
+                        $inc: { free_money: coinVal },
                     },
                     { new: true } // Return the modified document rather than the original
                 );
