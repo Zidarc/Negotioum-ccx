@@ -44,7 +44,7 @@ exports.handler = async (event, context) => {
                 body: JSON.stringify({ error: "Invalid coinType" }),
             };
         }
-
+        console.log(coinType);
         if (!teamId) {
             return {
                 statusCode: 400,
@@ -76,6 +76,7 @@ exports.handler = async (event, context) => {
         let serverCoinVal = serverData.coins[index];
 
         let coincount = coinVal/serverCoinVal;
+        console.log(coincount);
         if (type === 1) {
             if (coinVal <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
