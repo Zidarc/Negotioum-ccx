@@ -33,12 +33,18 @@ body {
     .Master_Table{
         margin-top: 10vh !important;
     }
-
+    .logos{
+        display: flex !important;
+        border-radius: 50;
+    }
+    .cedar{
+        margin-right:2vh;
+    }
+    .ccx{
+        margin-right:2vh;
+    }
     }
 @media (max-height: 500px){
-    .sidepanel{
-        border-bottom: none !important;
-    }
     .sidepanel{
         width: 100% !important;
         border-right:none !important;
@@ -46,7 +52,7 @@ body {
         border-bottom: 2px solid black ;
         margin-top: -10vh;
         padding-top: 5vh;
-        position: static !important;
+        height:auto !important;
     }
     body {
         display: block;
@@ -54,13 +60,24 @@ body {
     }
     .user_panel{
         padding-bottom: 5vh;
-        margin-left:0% !important;
+        margin-left: 0 !important;
 
     }
     .Master_Table{
         margin-top: 10vh !important;
     }
+    .logos{
+        display: flex !important;
+        border-radius: 50;
     }
+    .cedar{
+        margin-right:2vh;
+    }
+    .ccx{
+        margin-right:2vh;
+    }
+    }
+
 
 
 #stick-layer {
@@ -234,4 +251,32 @@ table {
 }
 .trend-black {
     color:black !important;
+}
+.logos {
+    display: block;
+    background-color: #1e2329;
+    margin-right: 0;
+    padding-right: 0;
+
+}
+
+.ccx-logo {
+    border-radius: 50% !important;
+    margin-bottom: 2vh;
+}
+.coin-logos {
+    width: fit-content;
+}
+.ccx{
+    border-radius: 50%; 
+}
+.cedar{
+    margin-bottom: 2vh;
+}
+.negotium {
+    margin-right:0vh;   
+    width:0vh !important;
+    height:0vh !important;
+    margin-bottom: 0vh;
+    
 }
