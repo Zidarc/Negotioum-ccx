@@ -79,7 +79,7 @@ exports.handler = async (event, context) => {
             if (coincount <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
                     let updatebalance = freeCoins - coinVal;
-                    updatebalance = updatebalance;
+                    updatebalance = parseFloat(updatebalance.toFixed(8));
                     const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
