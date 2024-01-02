@@ -78,7 +78,7 @@ exports.handler = async (event, context) => {
         let coincount = coinVal/serverData.coins[index];
         coincount = +coincount.toFixed(3);
         if (type === 1) {
-            if (coincount <= (freeCoins / serverCoinVal)) {
+            if (coincount <= parseFloat((freeCoins / serverCoinVal).toFixed(3))) {
                 // Update in case of buying
                     let updatebalance = freeCoins - coinVal;
                     updatebalance = +updatebalance.toFixed(3);
