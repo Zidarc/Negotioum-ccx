@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const UserData = require("../models/userdata");
+const Decimal = require('decimal.js');
+
 // total worth is not updated so calculate total should be outside update
 
 exports.handler = async (event, context) => {
@@ -74,17 +76,16 @@ exports.handler = async (event, context) => {
 
         const serverData = await masterResponse.json();
         const serverCoinVal = serverData.coins[index];
-        let coincount = coinVal/serverData.coins[index];
+        let coincount = new Decimal(coinVal).dividedBy(serverData.coins[index]).toNumber();
         if (type === 1) {
             if (coincount <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
-                    let updatebalance = freeCoins - coinVal;
-                    updatebalance = parseFloat(updatebalance.toFixed(8));
+                let updatebalance = new Decimal(freeCoins).minus(coinVal).toDecimalPlaces(8, Decimal.ROUND_DOWN).toNumber();
                     const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
                         $set: {
-                            [`coins.${index}`]: userCoinVal + coincount,
+                            [`coins.${index}`]: new Decimal(userCoinVal).plus(coincount).toNumber(),
                             free_money: updatebalance
                         }
                     },
@@ -105,11 +106,12 @@ exports.handler = async (event, context) => {
             }
         } else if (type === 2) {
             if (coincount <= userCoinVal) {
+                let increment = freeCoins + coinVal;
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal - coincount)},
-                        $inc: { free_money: coinVal },
+                        [`coins.${index}`]: new Decimal(userCoinVal).minus(coincount).toNumber(),
+                        free_money: new Decimal(increment).toDecimalPlaces(8, Decimal.ROUND_DOWN).toNumber(),
                     },
                     { new: true } // Return the modified document rather than the original
                 );
