@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
 
         const coinType = event.queryStringParameters && event.queryStringParameters.cointype;
         const transactionType = event.queryStringParameters && event.queryStringParameters.transactiontype;
-        const coinVal = event.queryStringParameters && event.queryStringParameters.coinval;
+        let coinVal = event.queryStringParameters && event.queryStringParameters.coinval;
         const teamId = event.queryStringParameters && event.queryStringParameters.teamId;
         let index;
         let type;
@@ -75,7 +75,7 @@ exports.handler = async (event, context) => {
         const serverData = await masterResponse.json();
         const serverCoinVal = serverData.coins[index];
         coinVal = +parseFloat(coinVal).toFixed(3);
-        const coincount = coinVal/serverData.coins[index];
+        let coincount = coinVal/serverData.coins[index];
         coincount = +coincount.toFixed(3);
         if (type === 1) {
             if (coincount <= (freeCoins / serverCoinVal)) {
