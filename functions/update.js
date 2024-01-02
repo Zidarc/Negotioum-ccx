@@ -83,7 +83,7 @@ exports.handler = async (event, context) => {
                     const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal + parseFloat(coincount))},
+                        $set: { [`coins.${index}`]: (userCoinVal + coincount)},
                         $inc: { free_money: -(coinVal) },
                     },
 
@@ -106,7 +106,7 @@ exports.handler = async (event, context) => {
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
-                        $set: { [`coins.${index}`]: (userCoinVal - parseFloat(coincount).toFixed(3))},
+                        $set: { [`coins.${index}`]: (userCoinVal - coincount)},
                         $inc: { free_money: coinVal },
                     },
                     { new: true } // Return the modified document rather than the original
