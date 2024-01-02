@@ -73,11 +73,11 @@ exports.handler = async (event, context) => {
         }
 
         const serverData = await masterResponse.json();
-        let serverCoinVal = serverData.coins[index];
+        const serverCoinVal = serverData.coins[index];
 
-        let coincount = coinVal/serverCoinVal;
+        const coincount = coinVal/serverData.coins[index];
         if (type === 1) {
-            if (coinVal <= (freeCoins / serverCoinVal)) {
+            if (coincount <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
                     const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
@@ -101,7 +101,7 @@ exports.handler = async (event, context) => {
                 };
             }
         } else if (type === 2) {
-            if (coinVal <= userCoinVal) {
+            if (coincount <= userCoinVal) {
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
