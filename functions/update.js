@@ -107,11 +107,12 @@ exports.handler = async (event, context) => {
         } else if (type === 2) {
             if (coincount <= userCoinVal) {
                 let increment = freeCoins + coinVal;
+                increment = new Decimal(increment).toDecimalPlaces(8, Decimal.ROUND_DOWN).toNumber();
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
                         [`coins.${index}`]: new Decimal(userCoinVal).minus(coincount).toNumber(),
-                        free_money: new Decimal(increment).toDecimalPlaces(8, Decimal.ROUND_DOWN).toNumber(),
+                        free_money: increment,
                     },
                     { new: true } // Return the modified document rather than the original
                 );
