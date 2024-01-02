@@ -87,6 +87,7 @@ async function readdata() {
         userCoins = data.coins;
         freeCoins = data.free_money;
         let sum = freeCoins + (masterCoin.reduce((acc, masterCoinVal, index) => acc + masterCoinVal * userCoins[index], 0));
+        sum = +sum.toFixed(3);
         if (data.error) {
             //document.getElementById("statusU").innerText = `Error: ${data.error}`;
         } else {
