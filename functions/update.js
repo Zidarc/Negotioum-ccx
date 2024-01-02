@@ -107,7 +107,6 @@ exports.handler = async (event, context) => {
         } else if (type === 2) {
             if (coincount <= userCoinVal) {
                 let increment = freeCoins + coinVal;
-                increment = new Decimal(increment).toDecimalPlaces(8, Decimal.ROUND_DOWN).toNumber();
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
@@ -116,7 +115,6 @@ exports.handler = async (event, context) => {
                     },
                     { new: true } // Return the modified document rather than the original
                 );
-
                 if (!updatedData) {
                     return {
                         statusCode: 404,
