@@ -73,7 +73,12 @@ exports.handler = async (event, context) => {
         if (!masterResponse.ok) {
             throw new Error(`HTTP error! Status: ${masterResponse.status}`);
         }
-
+        if (coinVal <= 0){
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: "Negative" }),
+            };
+        } 
         const serverData = await masterResponse.json();
         const serverCoinVal = serverData.coins[index];
         let coincount = new Decimal(coinVal).dividedBy(serverData.coins[index]).toNumber();
