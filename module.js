@@ -127,42 +127,45 @@ const updateInput = document.getElementById("update");
 const buyingPowerDiv = document.querySelector(".buying-power");
 
 updateInput.addEventListener("input", function() {
-    // Get the input value and convert it to a float, defaulting to 0 if not a valid number
-    const inputValue = new Decimal(updateInput.value);
-    const coinType = document.getElementById("CoinType").value;
+    try {
 
-    let indexs;
-    // Map coin types to their respective index
-    if (coinType === "bitcoin") {
-        indexs = 0;
-    } else if (coinType === "polkadot") {
-        indexs = 1;
-    } else if (coinType === "luna") {
-        indexs = 2;
-    } else if (coinType === "dogecoin") {
-        indexs = 3;
-    } else if (coinType === "xrp") {
-        indexs = 4;
-    } else if (coinType === "bnb") {
-        indexs = 5;
-    } else if (coinType === "eth"){
-        indexs = 6;
-    } else {
-        console.error("Invalid coinType:", coinType);
-        return {
-            statusCode: 400,
-            body: JSON.stringify({ error: "Invalid coinType" }),
-        };
+        const inputValue = new Decimal(updateInput.value);
+        const coinType = document.getElementById("CoinType").value;
+
+        let indexs;
+
+
+        if (coinType === "bitcoin") {
+            indexs = 0;
+        } else if (coinType === "polkadot") {
+            indexs = 1;
+        } else if (coinType === "luna") {
+            indexs = 2;
+        } else if (coinType === "dogecoin") {
+            indexs = 3;
+        } else if (coinType === "xrp") {
+            indexs = 4;
+        } else if (coinType === "bnb") {
+            indexs = 5;
+        } else if (coinType === "eth") {
+            indexs = 6;
+        } else {
+            console.error("Invalid coinType:", coinType);
+            return;
+        }
+
+        if (indexs === undefined) {
+            console.error("Invalid coinType:", coinType);
+            return;
+        }
+
+        const content = inputValue.dividedBy(masterCoin[indexs]);
+
+
+        buyingPowerDiv.textContent = ` ${content.toDecimalPlaces(8, Decimal.ROUND_DOWN).toString()}`;
+    } catch (error) {
+        console.error("Error in the calculation:", error);
     }
-    if (indexs === undefined) {
-        console.error("Invalid coinType:", coinType);
-        return;
-    }
-
-    const content = inputValue.dividedBy(masterCoin[indexs]);
-
-
-    buyingPowerDiv.textContent = ` ${content.toDP(precision, Decimal.ROUND_DOWN).toString()}`;
 });
 
 
