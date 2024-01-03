@@ -1,4 +1,5 @@
 import { getTeamId } from "./teamdata.js";
+import Decimal from 'decimal.js';
 let masterCoin;
 let userCoins;
 let freeCoins;
@@ -127,42 +128,41 @@ const buyingPowerDiv = document.querySelector(".buying-power");
 
 updateInput.addEventListener("input", function() {
     // Get the input value and convert it to a float, defaulting to 0 if not a valid number
-    const inputValue = parseFloat(updateInput.value);
-
-    // Get the selected coin type from the "CoinType" dropdown
+    const inputValue = new Decimal(updateInput.value);
     const coinType = document.getElementById("CoinType").value;
 
+    let indexs;
     // Map coin types to their respective index
-    const coinTypeToIndex = {
-        "bitcoin": 0,
-        "polkadot": 1,
-        "luna": 2,
-        "dogecoin": 3,
-        "xrp": 4,
-        "bnb": 5,
-        "eth": 6
-    };
-
-    // Get the index based on the selected coin type
-    const index = coinTypeToIndex[coinType];
-
-    // Check if the selected coin type is valid
-    if (index === undefined) {
+    if (coinType === "bitcoin") {
+        indexs = 0;
+    } else if (coinType === "polkadot") {
+        indexs = 1;
+    } else if (coinType === "luna") {
+        indexs = 2;
+    } else if (coinType === "dogecoin") {
+        indexs = 3;
+    } else if (coinType === "xrp") {
+        indexs = 4;
+    } else if (coinType === "bnb") {
+        indexs = 5;
+    } else if (coinType === "eth"){
+        indexs = 6;
+    } else {
+        console.error("Invalid coinType:", coinType);
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: "Invalid coinType" }),
+        };
+    }
+    if (indexs === undefined) {
         console.error("Invalid coinType:", coinType);
         return;
     }
 
-    // Array of coin IDs
-    const coinId = ["Bitcoin", "Polkadot", "Luna", "Dogecoin", "XRP", "BNB", "Ethereum"];
+    const content = inputValue.dividedBy(masterCoin[indexs]);
 
-    // Get the value of the selected coin
-    const mCoin = parseFloat(document.getElementById(coinId[index]).value); // Default to 1 if not a valid number
 
-    // Calculate the content based on the input value and the selected coin value
-    const content = inputValue / mCoin;
-
-    // Update the content of the buying-power div
-    buyingPowerDiv.textContent = ` ${content.toFixed(8)}`; // Display up to 3 decimal places
+    buyingPowerDiv.textContent = ` ${content.toDP(precision, Decimal.ROUND_DOWN).toString()}`;
 });
 
 
