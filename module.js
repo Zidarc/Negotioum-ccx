@@ -1,5 +1,5 @@
 import { getTeamId } from "./teamdata.js";
-import Decimal from 'decimal.js';
+const Decimal = require('decimal.js');
 let masterCoin;
 let userCoins;
 let freeCoins;
