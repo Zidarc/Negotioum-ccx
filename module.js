@@ -125,15 +125,18 @@ document.getElementById("readSelectedValue").addEventListener("click", async fun
 
 const updateInput = document.getElementById("update");
 const buyingPowerDiv = document.querySelector(".buying-power");
+const coinTypeInput = document.getElementById("CoinType");
 
-updateInput.addEventListener("input", function() {
+
+updateInput.addEventListener("input", calculateBuyingPower);
+coinTypeInput.addEventListener("change", calculateBuyingPower);
+
+function calculateBuyingPower() {
     try {
-
         const inputValue = updateInput.value;
-        const coinType = document.getElementById("CoinType").value;
+        const coinType = coinTypeInput.value;
 
         let indexs;
-
 
         if (coinType === "bitcoin") {
             indexs = 0;
@@ -159,13 +162,13 @@ updateInput.addEventListener("input", function() {
             return;
         }
 
-        const content = inputValue/masterCoin[indexs];
-
+        const content = inputValue / masterCoin[indexs];
 
         buyingPowerDiv.textContent = ` ${content}`;
     } catch (error) {
         console.error("Error in the calculation:", error);
     }
-});
+}
+
 
 
