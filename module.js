@@ -129,7 +129,7 @@ const buyingPowerDiv = document.querySelector(".buying-power");
 updateInput.addEventListener("input", function() {
     try {
 
-        const inputValue = new Decimal(updateInput.value);
+        const inputValue = updateInput.value;
         const coinType = document.getElementById("CoinType").value;
 
         let indexs;
