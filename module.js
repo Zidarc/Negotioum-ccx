@@ -1,5 +1,5 @@
 import { getTeamId } from "./teamdata.js";
-import { Decimal } from 'https://cdn.jsdelivr.net/npm/decimal.js@10.3.1';
+import * as Decimal from 'https://cdn.jsdelivr.net/npm/decimal.js@10.3.1';
 let masterCoin;
 let userCoins;
 let freeCoins;
