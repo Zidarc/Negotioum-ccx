@@ -127,7 +127,7 @@ const buyingPowerDiv = document.querySelector(".buying-power");
 
 updateInput.addEventListener("input", function() {
     // Get the input value and convert it to a float, defaulting to 0 if not a valid number
-    const inputValue = parseFloat(updateInput.value) || 0;
+    const inputValue = parseFloat(updateInput.value);
 
     // Get the selected coin type from the "CoinType" dropdown
     const coinType = document.getElementById("CoinType").value;
@@ -156,7 +156,7 @@ updateInput.addEventListener("input", function() {
     const coinId = ["Bitcoin", "Polkadot", "Luna", "Dogecoin", "XRP", "BNB", "Ethereum"];
 
     // Get the value of the selected coin
-    const mCoin = parseFloat(document.getElementById(coinId[index]).value) || 1; // Default to 1 if not a valid number
+    const mCoin = parseFloat(document.getElementById(coinId[index]).value); // Default to 1 if not a valid number
 
     // Calculate the content based on the input value and the selected coin value
     const content = inputValue / mCoin;
