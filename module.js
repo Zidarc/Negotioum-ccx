@@ -1,5 +1,5 @@
 import { getTeamId } from "./teamdata.js";
-import * as Decimal from 'https://cdn.jsdelivr.net/npm/decimal.js@10.3.1';
+
 let masterCoin;
 let userCoins;
 let freeCoins;
@@ -159,10 +159,10 @@ updateInput.addEventListener("input", function() {
             return;
         }
 
-        const content = inputValue.dividedBy(masterCoin[indexs]);
+        const content = inputValue/masterCoin[indexs];
 
 
-        buyingPowerDiv.textContent = ` ${content.toDecimalPlaces(8, Decimal.ROUND_DOWN).toString()}`;
+        buyingPowerDiv.textContent = ` ${content}`;
     } catch (error) {
         console.error("Error in the calculation:", error);
     }
