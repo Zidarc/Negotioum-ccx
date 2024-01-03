@@ -122,3 +122,47 @@ document.getElementById("readSelectedValue").addEventListener("click", async fun
     }
 });
 
+const updateInput = document.getElementById("update");
+const buyingPowerDiv = document.querySelector(".buying-power");
+
+updateInput.addEventListener("input", function() {
+    // Get the input value and convert it to a float, defaulting to 0 if not a valid number
+    const inputValue = parseFloat(updateInput.value) || 0;
+
+    // Get the selected coin type from the "CoinType" dropdown
+    const coinType = document.getElementById("CoinType").value;
+
+    // Map coin types to their respective index
+    const coinTypeToIndex = {
+        "bitcoin": 0,
+        "polkadot": 1,
+        "luna": 2,
+        "dogecoin": 3,
+        "xrp": 4,
+        "bnb": 5,
+        "eth": 6
+    };
+
+    // Get the index based on the selected coin type
+    const index = coinTypeToIndex[coinType];
+
+    // Check if the selected coin type is valid
+    if (index === undefined) {
+        console.error("Invalid coinType:", coinType);
+        return;
+    }
+
+    // Array of coin IDs
+    const coinId = ["Bitcoin", "Polkadot", "Luna", "Dogecoin", "XRP", "BNB", "Ethereum"];
+
+    // Get the value of the selected coin
+    const mCoin = parseFloat(document.getElementById(coinId[index]).value) || 1; // Default to 1 if not a valid number
+
+    // Calculate the content based on the input value and the selected coin value
+    const content = inputValue / mCoin;
+
+    // Update the content of the buying-power div
+    buyingPowerDiv.textContent = ` ${content.toFixed(8)}`; // Display up to 3 decimal places
+});
+
+
