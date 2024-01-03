@@ -106,7 +106,7 @@ exports.handler = async (event, context) => {
             }
         } else if (type === 2) {
             if (coincount <= userCoinVal) {
-                let increment = freeCoins + coinVal;
+                let increment = parseFloat(freeCoins) + parseFloat(coinVal);
                 const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
