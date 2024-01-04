@@ -87,7 +87,7 @@ exports.handler = async (event, context) => {
                 // Update in case of buying
                 let updatebalance = new Decimal(freeCoins).minus(coinVal).toDecimalPlaces(8, Decimal.ROUND_DOWN).toNumber();
                     const updatedData = await UserData.findOneAndUpdate(
-                    { Team_name: teamId },
+                    { Team_password: teamId },
                     {
                         $set: {
                             [`coins.${index}`]: new Decimal(userCoinVal).plus(coincount).toNumber(),
@@ -113,7 +113,7 @@ exports.handler = async (event, context) => {
             if (coincount <= userCoinVal) {
                 let increment = parseFloat(freeCoins) + parseFloat(coinVal);
                 const updatedData = await UserData.findOneAndUpdate(
-                    { Team_name: teamId },
+                    { Team_password: teamId },
                     {
                         [`coins.${index}`]: new Decimal(userCoinVal).minus(coincount).toNumber(),
                         free_money: increment,
