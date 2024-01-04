@@ -34,9 +34,6 @@ exports.handler = async (event, context) => {
             statusCode: 500,
             body: JSON.stringify({ error: "Internal Server Error" }),
         };
-    } finally {
-        // Close the connection in the finally block to ensure it's closed even in case of an error
-        mongoose.disconnect();
     }
 };
 
