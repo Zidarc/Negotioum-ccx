@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 const UserData = require("../models/userdata");
 const Decimal = require('decimal.js');
 
-exports.handler = async (event, context) => {
-    let connection;
 
+exports.handler = async (event, context) => {
     try {
-        // Connect to MongoDB once and reuse the connection
-        connection = await mongoose.createConnection('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
+        // Connect to MongoDB
+        await mongoose.connect('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -37,7 +36,7 @@ exports.handler = async (event, context) => {
             index = 4;
         } else if (coinType === "bnb") {
             index = 5;
-        } else if (coinType === "eth") {
+        } else if (coinType === "eth"){
             index = 6;
         } else {
             console.error("Invalid coinType:", coinType);
@@ -55,7 +54,7 @@ exports.handler = async (event, context) => {
         }
 
         // Fetch user data
-        const response = await fetch(`https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=${teamId}`);
+        const response = await fetch(` https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=${teamId}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -65,19 +64,20 @@ exports.handler = async (event, context) => {
         let userCoins = data.coins;
         let freeCoins = data.free_money;
         let userCoinVal = data.coins[index];
+        
 
         // Fetch server data (assuming this should be "MasterCoins")
-        const masterResponse = await fetch(`https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=MasterCoins`);
+        const masterResponse = await fetch(` https://negotium-ccx.netlify.app/.netlify/functions/read?teamName=MasterCoins`);
 
         if (!masterResponse.ok) {
             throw new Error(`HTTP error! Status: ${masterResponse.status}`);
         }
-        if (coinVal <= 0) {
+        if (coinVal <= 0){
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: "Negative" }),
             };
-        }
+        } 
         const serverData = await masterResponse.json();
         const serverCoinVal = serverData.coins[index];
         let coincount = new Decimal(coinVal).dividedBy(serverData.coins[index]).toNumber();
@@ -85,7 +85,7 @@ exports.handler = async (event, context) => {
             if (coincount <= (freeCoins / serverCoinVal)) {
                 // Update in case of buying
                 let updatebalance = new Decimal(freeCoins).minus(coinVal).toDecimalPlaces(8, Decimal.ROUND_DOWN).toNumber();
-                const updatedData = await UserData.findOneAndUpdate(
+                    const updatedData = await UserData.findOneAndUpdate(
                     { Team_name: teamId },
                     {
                         $set: {
@@ -93,6 +93,7 @@ exports.handler = async (event, context) => {
                             free_money: updatebalance
                         }
                     },
+
                 );
 
                 if (!updatedData) {
@@ -131,6 +132,11 @@ exports.handler = async (event, context) => {
                 };
             }
         }
+// when i change it manually the total worth function wont run so it must run when dom content is loaded so it must be a new serverless function that is called when on the case for update and when the page is loaded
+// new database
+// is calculation on this for total worth
+
+
 
         return {
             statusCode: 400,
@@ -144,8 +150,6 @@ exports.handler = async (event, context) => {
         };
     } finally {
         // Close the connection in the finally block to ensure it's closed even in case of an error
-        if (connection) {
-            await connection.close();
-        }
+        mongoose.disconnect();
     }
 };
