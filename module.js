@@ -123,6 +123,46 @@ document.getElementById("readSelectedValue").addEventListener("click", async fun
     }
 });
 
+document.getElementById("liquidate").addEventListener("click", async function() {
+    try {
+        let cointype = document.getElementById("CoinType").value;
+        let transactiontype = 2
+        const teamId = getTeamId();
+        let index;
+        if (cointype === "bitcoin") {
+            index = 0;
+        } else if (cointype === "polkadot") {
+            index = 1;
+        } else if (cointype === "luna") {
+            index = 2;
+        } else if (cointype === "dogecoin") {
+            index = 3;
+        } else if (cointype === "xrp") {
+            index = 4;
+        } else if (cointype === "bnb") {
+            index = 5;
+        } else if (cointype === "eth"){
+            index = 6;
+        } else {
+            console.error("Invalid coinType:", coinType);
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: "Invalid coinType" }),
+            };
+        }
+        let coinamount = userCoins[index];
+        let masterprice = masterCoin[index];
+        let coinval = masterprice * coinamount;
+        const response = await fetch(`/.netlify/functions/update?cointype=${cointype}&teamId=${teamId}&transactiontype=${transactiontype}&coinval=${coinval}`);
+        //const total = await fetch(`/.netlify/functions/totalworth?teamId=${teamId}`);
+        await readdata();
+    } catch (error) {
+        //document.getElementById("statusN").innerText = " Error: " + error;
+    }
+    
+});
+
+
 const updateInput = document.getElementById("update");
 const buyingPowerDiv = document.querySelector(".buying-power");
 const coinTypeInput = document.getElementById("CoinType");
