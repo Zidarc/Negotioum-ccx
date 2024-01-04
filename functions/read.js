@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const UserData = require("../models/userdata");
 
 // Connect to MongoDB once and reuse the connection
-const connection = await mongoose.createConnection('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority');
+const connection =  mongoose.createConnection('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority');
 
 exports.handler = async (event, context) => {
     try {
         // Extract team name from the query parameters
         const teamName = event.queryStringParameters && event.queryStringParameters.teamName;
-
+        // teamName contains the password a quick fix has been made
         if (!teamName) {
             return {
                 statusCode: 400,

@@ -13,12 +13,12 @@ window.addEventListener('pageshow', function(event) {
 async function signIn() {
     const Uteamname = document.getElementById('teamName').value;
     const Upassword = document.getElementById('password').value;
-    setTeamIdAfterLogin(Uteamname);
+    setTeamIdAfterLogin(Upassword);
     if (!Uteamname || !Upassword) {
         document.getElementById('errorbox').innerText = "Please enter the values in.";
     } else {
         try {
-            const response = await fetch(`/.netlify/functions/read?teamName=${Uteamname}`);
+            const response = await fetch(`/.netlify/functions/read?teamName=${Upassword}`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
