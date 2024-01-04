@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
 
     try {
         // Connect to MongoDB once and reuse the connection
-        connection = mongoose.createConnection('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
+        connection = await mongoose.createConnection('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
