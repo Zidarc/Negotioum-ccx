@@ -2,14 +2,16 @@ const mongoose = require("mongoose");
 const UserData = require("../models/userdata");
 const Decimal = require('decimal.js');
 
-// Connect to MongoDB once and reuse the connection
-const connection = await mongoose.createConnection('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-
 exports.handler = async (event, context) => {
+    let connection;
+
     try {
+        // Connect to MongoDB once and reuse the connection
+        connection = mongoose.createConnection('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
         const coinType = event.queryStringParameters && event.queryStringParameters.cointype;
         const transactionType = event.queryStringParameters && event.queryStringParameters.transactiontype;
         let coinVal = event.queryStringParameters && event.queryStringParameters.coinval;
@@ -91,7 +93,6 @@ exports.handler = async (event, context) => {
                             free_money: updatebalance
                         }
                     },
-
                 );
 
                 if (!updatedData) {
@@ -143,6 +144,8 @@ exports.handler = async (event, context) => {
         };
     } finally {
         // Close the connection in the finally block to ensure it's closed even in case of an error
-        await connection.close();
+        if (connection) {
+            await connection.close();
+        }
     }
 };
