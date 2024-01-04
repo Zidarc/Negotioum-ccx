@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const UserData = require("../models/userdata");
 const Decimal = require('decimal.js');
 
+// total worth is not updated so calculate total should be outside update
 
 exports.handler = async (event, context) => {
     try {
@@ -148,8 +149,5 @@ exports.handler = async (event, context) => {
             statusCode: 500,
             body: JSON.stringify({ error: "Internal Server Error", details: error.message }),
         };
-    } finally {
-        // Close the connection in the finally block to ensure it's closed even in case of an error
-        mongoose.disconnect();
     }
 };
