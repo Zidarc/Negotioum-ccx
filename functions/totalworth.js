@@ -46,7 +46,7 @@ exports.handler = async (event, context) => {
 
         // Update the document in MongoDB
         const updatedData = await UserData.findOneAndUpdate(
-            { Team_name: teamId },
+            { Team_password: teamId },
             { $set: { total_worth: total } },
             { new: true } // Return the updated document
         );
