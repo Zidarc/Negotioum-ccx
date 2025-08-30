@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dbUrl = 'mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority';
+const dbUrl = 'env check local file';
 const express = require('express');
 const UserData = require("./models/userdata")
 const app = express()
