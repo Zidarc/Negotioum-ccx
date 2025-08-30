@@ -27,6 +27,7 @@ To run the project locally:
 1. Clone the repository:
   ```bash
    git clone https://github.com/Zidarc/Negotioum-ccx.git
+
 2. Install dependencies:
   ```bash
   npm install
