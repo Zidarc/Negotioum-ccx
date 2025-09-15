@@ -4,7 +4,7 @@ const UserData = require("../models/userdata");
 exports.handler = async (event, context) => {
     try {
         // Connect to MongoDB
-        await mongoose.connect('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
+        await mongoose.connect('mongodb+srv://alihussain:<passwor>@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
