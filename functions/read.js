@@ -3,7 +3,7 @@ const UserData = require("../models/userdata");
 
 exports.handler = async (event, context) => {
     try {
-        mongoose.connect('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority');
+        mongoose.connect('mongodb+srv://alihussain:<password>@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority');
 
         // Extract team name from the query parameters
         const teamName = event.queryStringParameters && event.queryStringParameters.teamName;
