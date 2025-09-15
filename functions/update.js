@@ -7,7 +7,7 @@ const Decimal = require('decimal.js');
 exports.handler = async (event, context) => {
     try {
         // Connect to MongoDB
-        await mongoose.connect('mongodb+srv://alihussain:Kampala1980@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
+        await mongoose.connect('mongodb+srv://alihussain:<password?@cluster0.15cptjw.mongodb.net/?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
